@@ -1,0 +1,65 @@
+---
+title: Agents Overview
+description: Datachecks uses four AI agents to automate discovery, assessment, validation, and translation across your migration.
+---
+
+Datachecks is built around four AI agents, each responsible for a distinct phase of the data migration lifecycle. The agents are powered by [LangGraph](https://langchain-ai.github.io/langgraph/) workflows and run as background jobs you can monitor in real time.
+
+## The four agents
+
+<CardGroup cols={2}>
+  <Card
+    title="Asset Discovery"
+    icon="magnifying-glass"
+    href="/agents/asset-discovery"
+  >
+    Ask natural language questions about your data schemas, tables, columns, and relationships. The agent queries your registered assets and generates SQL on demand.
+  </Card>
+  <Card
+    title="Migration Assessment"
+    icon="chart-bar"
+    href="/agents/migration-assessment"
+  >
+    Analyze stored procedures, views, and translation complexity in your source database. Get a structured readiness report before committing to a migration.
+  </Card>
+  <Card
+    title="Data Validation"
+    icon="shield-check"
+    href="/agents/data-validation"
+  >
+    Describe what you want to validate in plain language. The agent extracts the target table and validation type and configures the validation for you.
+  </Card>
+  <Card
+    title="Translation"
+    icon="code"
+    href="/agents/translation"
+  >
+    Translate SQL queries from your source database dialect to the target platform. The agent classifies each query, translates it, and verifies correctness by running a comparison.
+  </Card>
+</CardGroup>
+
+## How agents fit into the migration workflow
+
+The agents are designed to work sequentially, but you can run them independently:
+
+```
+Asset Discovery
+      ↓
+  Understand what you have
+      ↓
+Migration Assessment
+      ↓
+  Know what will be complex
+      ↓
+Translation
+      ↓
+  Convert SQL logic to target dialect
+      ↓
+Data Validation
+      ↓
+  Confirm data integrity after migration
+```
+
+## Where to find agents
+
+In Bifrost, navigate to **Agent** in the left sidebar to access the agent chat interface. Each agent run is tracked as a job — go to **Jobs** to monitor progress and view results.

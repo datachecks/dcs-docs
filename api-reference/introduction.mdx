@@ -1,33 +1,29 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: API Reference
+description: Stormbreaker REST API for programmatic access to Datachecks.
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
-
-## Welcome
-
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+The Stormbreaker API gives you programmatic access to all Datachecks operations — comparisons, validations, data sources, jobs, and more.
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+All API requests require a Bearer token and a workspace ID header:
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+```http
+Authorization: Bearer <your-api-key>
+Workspace-Id: <your-workspace-id>
 ```
+
+You can create API keys under **Settings → API Keys** in Bifrost.
+
+## Base URL
+
+```
+https://api.datachecks.io
+```
+
+## Versioning
+
+The current API version is `v1`. All endpoints are prefixed with `/api/v1/`.
+
+<Note>Full API reference documentation is coming soon. The OpenAPI spec will be available at `/openapi.json` from your Stormbreaker instance.</Note>

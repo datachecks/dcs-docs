@@ -1,0 +1,75 @@
+---
+title: Asset Discovery Agent
+description: Explore your data assets using natural language. The Asset Discovery agent queries your registered schemas and generates SQL on demand.
+---
+
+The Asset Discovery agent lets you explore your data assets through conversation. Instead of writing queries manually, you describe what you want to know — the agent retrieves relevant schema context and either answers directly or generates a SQL query for you.
+
+## What it does
+
+- Answers questions about table schemas, column names, and data types
+- Discovers relationships between tables using foreign key metadata
+- Generates SQL queries against your registered datasets
+- Provides data profile information for columns and tables
+
+## How it works
+
+The agent uses a retrieval-augmented generation (RAG) approach combined with SQL generation:
+
+```
+User question
+     ↓
+Retrieve context
+(schema embeddings, column info, foreign keys)
+     ↓
+Generate response
+     ↓
+  ┌──────────────────────────┐
+  │  Tool call needed?       │
+  │  - Fetch dataset info    │
+  │  - Fetch column info     │
+  │  - Fetch foreign keys    │
+  └──────────────────────────┘
+     ↓
+SQL generation (if query required)
+     ↓
+Final response
+```
+
+The agent retrieves schema context from your registered assets, determines whether a tool call is needed to fetch additional metadata, and then either generates a plain language response or a SQL query depending on what you asked.
+
+## What you can ask
+
+Here are examples of questions the agent handles well:
+
+- *"What tables are in the orders schema?"*
+- *"What columns does the `customer` table have?"*
+- *"Show me all tables that reference `product_id`."*
+- *"Write a query that joins orders and customers by customer ID."*
+- *"Which columns in the `sales` table might contain PII?"*
+
+## Prerequisites
+
+Before using the Asset Discovery agent:
+
+1. Your data source must be connected and added to your workspace. See [Data Sources](/data-sources/overview).
+2. Datasets must be registered as assets. Go to **Assets** to confirm they appear.
+
+## Running the agent
+
+1. In Bifrost, navigate to **Agent** in the left sidebar.
+2. Select or start a new agent session.
+3. Type your question about your data assets and press **Enter**.
+4. The agent retrieves context and responds. If it generates SQL, you can copy or execute the query directly.
+
+## Output
+
+The agent returns:
+- A natural language explanation
+- A SQL query (when applicable), formatted for your registered database dialect
+- References to the specific tables and columns it used
+
+## Limitations
+
+- The agent queries schema metadata and embeddings — it does not execute queries against live data unless you explicitly request SQL execution.
+- Results are based on the schema information registered at the time of the last sync.

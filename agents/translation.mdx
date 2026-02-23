@@ -1,0 +1,87 @@
+---
+title: Translation Agent
+description: Translate SQL queries from your source database dialect to your target platform automatically.
+---
+
+The Translation agent converts SQL queries from a source database dialect to a target database dialect. It classifies each query, translates it, seeds the result into a temporary dataset, and then runs a comparison to verify the translation is correct. Translation errors are detected and fixed automatically in a feedback loop.
+
+## What it does
+
+- Classifies SQL queries as SELECT or DML (INSERT, UPDATE)
+- Translates queries from source to target dialect using LLM-based translation
+- Creates temporary datasets in the target database to verify results
+- Runs data comparisons to confirm the translated query produces matching output
+- Automatically retries and fixes translation errors based on error messages
+
+## How it works
+
+```
+Initialize workflow
+      ↓
+Fetch dataset names
+      ↓
+Classify query
+  ┌───────────────────────┐
+  │   SELECT              │  →  Iterative SELECT translation
+  │   INSERT / UPDATE     │  →  Iterative DML translation
+  └───────────────────────┘
+      ↓
+Redis cleanup
+      ↓
+Generate response
+      ↓
+     END
+```
+
+For each query, the agent:
+
+1. **Classifies** the query as SELECT, INSERT, or UPDATE/DML
+2. **Translates** the SQL from the source dialect to the target dialect
+3. **Creates datasets** in the target database to hold the translated query results
+4. **Seeds data** from the source into the temporary datasets
+5. **Runs a comparison** to verify the translated query produces the same results as the original
+6. **Fixes errors** if the translated query fails — the agent reads the error message, analyzes the cause, and retries with a corrected translation
+
+## Supported dialects
+
+The agent uses [sqlglot](https://sqlglot.com) for SQL parsing and can translate between all dialects sqlglot supports, including Snowflake, Databricks (Spark SQL), BigQuery, PostgreSQL, MySQL, Oracle, and Microsoft SQL Server.
+
+## Error correction
+
+When a translated query produces an error on the target database, the agent applies targeted fixes:
+
+- Syntax differences between dialects (functions, data types, identifiers)
+- Constructs not supported in the target platform
+- SQL Server–specific rules (for example, ORDER BY handling in views)
+
+The agent preserves the original query's intent and makes minimal, precise changes to correct the translation.
+
+## Prerequisites
+
+Before using the Translation agent:
+
+1. Both source and target data sources must be connected and added to your workspace.
+2. The datasets you want to translate against must be registered as assets.
+3. The target database must be writable — the agent creates temporary datasets to verify translations.
+
+## Running the agent
+
+1. In Bifrost, navigate to **Translation Projects** in the left sidebar.
+2. Create a new translation project and select the source and target data sources.
+3. Add the SQL queries you want to translate.
+4. The agent runs the translation workflow and creates a job. Monitor progress in **Jobs**.
+5. When complete, review the translated queries and comparison results in the project view.
+
+## Reviewing results
+
+For each translated query you can see:
+- The original source SQL
+- The translated target SQL
+- Comparison results confirming whether the outputs match
+- Any error messages and fixes applied during translation
+
+## Limitations
+
+- The agent requires write access to the target database to create and clean up temporary datasets.
+- Very complex or non-standard SQL constructs may require manual review after translation.
+- Translation accuracy depends on the availability of schema context for the source datasets.

@@ -1,0 +1,61 @@
+---
+title: Core Concepts
+description: Key terms and concepts used across the Datachecks platform.
+---
+
+## Workspace
+
+A workspace is the top-level organizational unit in Datachecks. All data sources, assets, validations, comparisons, and jobs belong to a workspace. You can create multiple workspaces to separate projects, teams, or environments (for example, staging vs production).
+
+Only admin users can manage workspaces and add data sources to them.
+
+## Data Source
+
+A data source is a database connection registered in your workspace. Datachecks supports Snowflake, Databricks, BigQuery, PostgreSQL, MySQL, Oracle, Azure SQL, and Sybase.
+
+You connect a data source once under Settings and then reference it across validations, comparisons, and agent runs.
+
+## Asset
+
+An asset represents a dataset (table or view) within a data source. When you add a data source to a workspace, Datachecks discovers and registers its datasets as assets. Each asset tracks schema, column metadata, and data profile information.
+
+Assets are the primary unit that agents operate on.
+
+## Validation
+
+A validation is a rule applied to an asset to check data quality or integrity. Examples include null checks, uniqueness checks, range checks, and custom SQL assertions.
+
+Validations run on a schedule or on demand. When a validation detects a threshold violation, it triggers an alert.
+
+## Comparison
+
+A comparison checks whether data in a source dataset matches a target dataset. Comparisons are used during migration to verify that data has been moved accurately. You can compare row counts, column values, and schema structure.
+
+A comparison produces a job that runs asynchronously and returns detailed results including differential percentages and row-level diffs.
+
+## Structural Comparison
+
+A structural comparison checks the schema of a source dataset against a target dataset — column names, data types, nullability, and primary keys — without examining the actual data values.
+
+## Collection
+
+A collection is a user-defined group of validations. You use collections to organize related validations together for easier monitoring and bulk operations.
+
+## Job
+
+A job is an asynchronous background task. Running a comparison, an agent analysis, or a batch validation all create jobs. You can monitor job status, view progress, and terminate running jobs from the Jobs view.
+
+## Agent
+
+An agent is an AI-powered workflow that automates a specific migration task. Datachecks has four agents:
+
+- **Asset Discovery** — Natural language queries about your data schema and assets
+- **Migration Assessment** — Analysis of migration complexity and readiness
+- **Data Validation** — AI-assisted validation configuration
+- **Translation** — SQL query translation between database dialects
+
+See the [Agents](/agents/overview) section for full details.
+
+## API Key
+
+An API key authenticates programmatic access to the Stormbreaker API. You can create and manage API keys under Settings. API keys are scoped to a workspace.

@@ -1,0 +1,57 @@
+---
+title: Quickstart
+description: Connect a data source and run your first comparison in five steps.
+---
+
+## Prerequisites
+
+- Admin access to your Datachecks workspace
+- Credentials for at least one supported database (source and target)
+
+---
+
+## Step 1: Connect your data sources
+
+Go to **Settings → Integrations → Data Sources** and add your source and target databases.
+
+Only admin users can add data sources. Datachecks supports Snowflake, Databricks, BigQuery, PostgreSQL, MySQL, Oracle, Azure SQL, and Sybase.
+
+See [Data Sources](/data-sources/overview) for connection details by database type.
+
+## Step 2: Add data sources to your workspace
+
+After connecting, go to **Settings → Workspaces → Data Sources** and link the data sources to your workspace. This makes them available to agents, validations, and comparisons.
+
+## Step 3: Explore your assets
+
+Once linked, Datachecks discovers the datasets (tables and views) in each data source and registers them as assets. Go to **Assets** to browse them.
+
+From the Assets view you can:
+- View schema and column metadata
+- Review AI-generated validation suggestions
+- Enable or reject validation recommendations individually or in bulk
+
+## Step 4: Run your first comparison
+
+Go to **Comparisons → Create** and configure a comparison between a source dataset and its corresponding target dataset. Select the columns to compare, set primary keys, and submit.
+
+Datachecks creates a job that runs the comparison asynchronously. Go to **Jobs** to monitor progress.
+
+## Step 5: Review results and configure alerts
+
+When the comparison job completes, open the result to see row counts, differential percentages, and any data mismatches.
+
+To get notified automatically when issues are detected, configure notification channels under **Settings → Notifications**.
+
+---
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Agents" icon="robot" href="/agents/overview">
+    Use AI agents to discover assets, assess migration complexity, and translate SQL.
+  </Card>
+  <Card title="Validations" icon="shield-check" href="/validation/overview">
+    Set up ongoing data quality checks on your assets.
+  </Card>
+</CardGroup>

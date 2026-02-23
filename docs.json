@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Datachecks",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#5247a2",
+    "light": "#7b73cc",
+    "dark": "#3d348a"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -14,55 +14,117 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "getting-started/core-concepts",
+              "getting-started/quickstart"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Agents",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "agents/overview",
+              "agents/asset-discovery",
+              "agents/migration-assessment",
+              "agents/data-validation",
+              "agents/translation"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Data Sources",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "data-sources/overview",
+              "data-sources/snowflake",
+              "data-sources/databricks",
+              "data-sources/bigquery",
+              "data-sources/postgresql",
+              "data-sources/mysql",
+              "data-sources/oracle",
+              "data-sources/azure-sql",
+              "data-sources/sybase"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Assets",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "assets/overview"
+            ]
+          },
+          {
+            "group": "Validation",
+            "pages": [
+              "validation/overview",
+              "validation/validation-types",
+              "validation/configure"
+            ]
+          },
+          {
+            "group": "Comparisons",
+            "pages": [
+              "comparisons/overview",
+              "comparisons/create",
+              "comparisons/structural"
+            ]
+          },
+          {
+            "group": "Collections",
+            "pages": [
+              "collections/overview"
+            ]
+          },
+          {
+            "group": "Dashboards",
+            "pages": [
+              "dashboards/migration",
+              "dashboards/observability",
+              "dashboards/alerts"
+            ]
+          },
+          {
+            "group": "Test Data",
+            "pages": [
+              "test-data/overview"
+            ]
+          },
+          {
+            "group": "Alerts",
+            "pages": [
+              "alerts/overview",
+              "alerts/channels/email",
+              "alerts/channels/slack",
+              "alerts/channels/teams"
+            ]
+          },
+          {
+            "group": "Workspace",
+            "pages": [
+              "workspace/workspaces",
+              "workspace/users"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "reference/api-keys",
+              "reference/validation-types",
+              "reference/thresholds",
+              "reference/windows",
+              "reference/functions",
+              "reference/jobs",
+              "reference/error-codes",
+              "reference/masking"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API Reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Overview",
             "pages": [
               "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
             ]
           }
         ]
@@ -71,14 +133,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Website",
+          "href": "https://www.datachecks.io",
+          "icon": "globe"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Support",
+          "href": "mailto:support@datachecks.io",
+          "icon": "envelope"
         }
       ]
     }
@@ -91,32 +153,27 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@datachecks.io"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Get Started",
+      "href": "https://www.datachecks.io"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude"
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/datachecks_io",
+      "linkedin": "https://linkedin.com/company/datachecks"
     }
   }
 }

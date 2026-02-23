@@ -1,97 +1,70 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: Introduction
+description: Datachecks is an AI-powered data migration copilot that helps you migrate to cloud platforms faster and with confidence.
 ---
 
-## Setting up
+Datachecks accelerates data migrations to Snowflake, Databricks, and BigQuery by automating the three most time-consuming phases: understanding your legacy system, translating SQL and ETL logic, and validating data integrity between source and target.
 
-Get your documentation site up and running in minutes.
+## How it works
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
+Datachecks is built around four AI agents that guide you through the full migration lifecycle:
 
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
+<CardGroup cols={2}>
   <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
+    title="Asset Discovery"
+    icon="magnifying-glass"
+    href="/agents/asset-discovery"
   >
-    Edit your docs locally and preview them in real time.
+    Explore your data assets using natural language. Understand schemas, relationships, and data profiles before you migrate.
   </Card>
   <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
+    title="Migration Assessment"
+    icon="chart-bar"
+    href="/agents/migration-assessment"
   >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+    Analyze stored procedures, views, and SQL complexity to get a full readiness report before migration begins.
   </Card>
   <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
+    title="Data Validation"
+    icon="shield-check"
+    href="/agents/data-validation"
   >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
-
-## Create beautiful pages
-
-Everything you need to create world-class documentation.
-
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
+    Set up and run validations to ensure data accuracy and integrity throughout your migration.
   </Card>
   <Card
-    title="Code samples"
+    title="Translation"
     icon="code"
-    href="/essentials/code"
+    href="/agents/translation"
   >
-    Add sample code to demonstrate how to use your product.
+    Automatically translate SQL queries from your source database dialect to your target platform.
+  </Card>
+</CardGroup>
+
+## Platform components
+
+Datachecks consists of three components that work together:
+
+| Component | Description |
+|-----------|-------------|
+| **Bifrost** | The web UI where you connect data sources, run agents, review results, and manage your workspace |
+| **Stormbreaker** | The backend API that powers all operations — comparisons, validations, jobs, and integrations |
+| **Krypto** | The AI agent module that runs the four agents using LangGraph-based workflows |
+
+## Get started
+
+<CardGroup cols={2}>
+  <Card
+    title="Core Concepts"
+    icon="book"
+    href="/getting-started/core-concepts"
+  >
+    Learn the key terms and concepts used across the platform.
   </Card>
   <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
+    title="Quickstart"
+    icon="bolt"
+    href="/getting-started/quickstart"
   >
-    Display images and other media.
+    Connect a data source and run your first comparison in minutes.
   </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
-
-## Need inspiration?
-
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+</CardGroup>
