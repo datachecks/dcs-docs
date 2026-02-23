@@ -32,17 +32,30 @@
             ]
           },
           {
-            "group": "Data Sources",
+            "group": "Integrations",
             "pages": [
-              "data-sources/overview",
-              "data-sources/snowflake",
-              "data-sources/databricks",
-              "data-sources/bigquery",
-              "data-sources/postgresql",
-              "data-sources/mysql",
-              "data-sources/oracle",
-              "data-sources/azure-sql",
-              "data-sources/sybase"
+              {
+                "group": "Databases",
+                "pages": [
+                  "data-sources/overview",
+                  "data-sources/snowflake",
+                  "data-sources/databricks",
+                  "data-sources/bigquery",
+                  "data-sources/postgresql",
+                  "data-sources/mysql",
+                  "data-sources/oracle",
+                  "data-sources/azure-sql",
+                  "data-sources/sybase"
+                ]
+              },
+              {
+                "group": "Notification & Collaboration",
+                "pages": [
+                  "alerts/channels/email",
+                  "alerts/channels/slack",
+                  "alerts/channels/teams"
+                ]
+              }
             ]
           },
           {
@@ -90,10 +103,7 @@
           {
             "group": "Alerts",
             "pages": [
-              "alerts/overview",
-              "alerts/channels/email",
-              "alerts/channels/slack",
-              "alerts/channels/teams"
+              "alerts/overview"
             ]
           },
           {
