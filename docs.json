@@ -18,7 +18,14 @@
             "pages": [
               "index",
               "getting-started/core-concepts",
-              "getting-started/quickstart"
+              "getting-started/quickstart",
+              {
+                "group": "Manage Your Team",
+                "pages": [
+                  "workspace/workspaces",
+                  "workspace/users"
+                ]
+              }
             ]
           },
           {
@@ -103,13 +110,6 @@
                   "alerts/overview"
                 ]
               }
-            ]
-          },
-          {
-            "group": "Workspace",
-            "pages": [
-              "workspace/workspaces",
-              "workspace/users"
             ]
           },
           {
