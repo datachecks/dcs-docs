@@ -1,8 +1,57 @@
 ---
 title: Assets
-description: Browse and manage the datasets discovered from your connected data sources.
+description: A centralized hub for exploring and monitoring all datasets connected to your workspace.
 ---
 
-<Note>This page is coming soon.</Note>
+Assets is the central place to explore and monitor all data sources connected to your workspace. It organizes your connected databases into a three-level hierarchy and surfaces data quality metrics, validation results, and schema details in one view.
 
-Assets are the datasets (tables and views) discovered from your connected data sources. When you add a data source to a workspace, Datachecks registers its datasets as assets and makes them available for validation, comparison, and agent analysis.
+## Three-level hierarchy
+
+### Datasources
+
+The top level lists every database connected to your workspace. For each datasource you can see:
+
+- Name and connection type
+- Status
+- Number of datasets and columns
+- Validation metrics including failed validation count
+
+You can search across datasources, trigger a rescan to pick up schema changes, and view aggregate quality statistics.
+
+### Datasets
+
+Clicking into a datasource shows its datasets (tables and views). For each dataset you can see:
+
+- Status
+- Column count
+- Number of validations run
+- Domain classification
+
+### Tables
+
+Clicking into a dataset opens the detailed table view with:
+
+- **General information** — schema, description, and domain assignment
+- **Health score** — a quality score broken down across six dimensions: reliability, uniqueness, completeness, distributions, custom checks, and validity
+- **Row trends** — row count over time
+- **Validation summary** — all validations applied to the table, with status
+
+## Workspace isolation
+
+Each workspace maintains its own asset view. Teams can track data quality independently without seeing assets from other workspaces.
+
+## Validation management
+
+The **Validation** tab on a dataset shows all validation rules applied to it. You can filter by status, category, method type, threshold type, and collection. From here you can enable, disable, or adjust individual validations.
+
+## Column masking
+
+Sensitive or PII columns can be masked within the UI. This is useful in shared workspace environments where not all users should see raw column values.
+
+## Lookback windows
+
+You can create lookback windows — **Global** or **Tumbling** — to scope validation monitoring to a specific timeframe. Windows allow you to track changes and trends over defined periods.
+
+## Domain assignment
+
+Datasets can be assigned to domains for organizational purposes. Domains help group related tables across datasources and make large asset inventories easier to navigate.
