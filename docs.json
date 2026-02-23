@@ -59,51 +59,50 @@
             ]
           },
           {
-            "group": "Assets",
+            "group": "Features",
             "pages": [
-              "assets/overview"
-            ]
-          },
-          {
-            "group": "Validation",
-            "pages": [
-              "validation/overview",
-              "validation/validation-types",
-              "validation/configure"
-            ]
-          },
-          {
-            "group": "Comparisons",
-            "pages": [
-              "comparisons/overview",
-              "comparisons/create",
-              "comparisons/structural"
-            ]
-          },
-          {
-            "group": "Collections",
-            "pages": [
-              "collections/overview"
-            ]
-          },
-          {
-            "group": "Dashboards",
-            "pages": [
-              "dashboards/migration",
-              "dashboards/observability",
-              "dashboards/alerts"
-            ]
-          },
-          {
-            "group": "Test Data",
-            "pages": [
-              "test-data/overview"
-            ]
-          },
-          {
-            "group": "Alerts",
-            "pages": [
-              "alerts/overview"
+              {
+                "group": "Assets",
+                "pages": [
+                  "assets/overview"
+                ]
+              },
+              {
+                "group": "Validation",
+                "pages": [
+                  "validation/overview",
+                  "validation/validation-types",
+                  "validation/configure"
+                ]
+              },
+              {
+                "group": "Comparisons",
+                "pages": [
+                  "comparisons/overview",
+                  "comparisons/create",
+                  "comparisons/structural"
+                ]
+              },
+              {
+                "group": "Dashboards",
+                "pages": [
+                  "dashboards/migration",
+                  "dashboards/observability",
+                  "dashboards/alerts"
+                ]
+              },
+              {
+                "group": "Test Data",
+                "pages": [
+                  "test-data/overview"
+                ]
+              },
+              {
+                "group": "Alerts",
+                "pages": [
+                  "alerts/overview"
+                ]
+              }
             ]
           },
           {
