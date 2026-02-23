@@ -27,31 +27,35 @@ Clicking into a datasource shows its datasets (tables and views). For each datas
 - Number of validations run
 - Domain classification
 
-### Tables
+### Dataset detail
 
-Clicking into a dataset opens the detailed table view with:
+Clicking into a dataset opens the detail view. It has three tabs:
 
-- **General information** — schema, description, and domain assignment
+**Overview**
+
 - **Health score** — a quality score broken down across six dimensions: reliability, uniqueness, completeness, distributions, custom checks, and validity
 - **Row trends** — row count over time
-- **Validation summary** — all validations applied to the table, with status
+- **Data preview** — a sample of rows from the dataset so you can inspect the data directly without leaving Datachecks
+
+**Validation & Alerts**
+
+All validations applied to this dataset are listed here, along with any alerts they have triggered. You can filter by validation status, category, method type, threshold type, and collection. From this tab you can enable, disable, or adjust individual validations without leaving the dataset view.
+
+**Configuration**
+
+Manage dataset-level settings:
+
+- **Description** — add or edit a human-readable description for the dataset
+- **Domain** — assign the dataset to a domain to group related datasets across datasources
 
 ## Workspace isolation
 
 Each workspace maintains its own asset view. Teams can track data quality independently without seeing assets from other workspaces.
 
-## Validation management
-
-The **Validation** tab on a dataset shows all validation rules applied to it. You can filter by status, category, method type, threshold type, and collection. From here you can enable, disable, or adjust individual validations.
-
 ## Column masking
 
-Sensitive or PII columns can be masked within the UI. This is useful in shared workspace environments where not all users should see raw column values.
+Sensitive or PII columns can be masked within the UI. This is useful in shared workspace environments where not all users should see raw column values. Masking is configured through the [Profiling](/assets/profiling) workflow, which identifies sensitive columns automatically.
 
 ## Lookback windows
 
 You can create lookback windows — **Global** or **Tumbling** — to scope validation monitoring to a specific timeframe. Windows allow you to track changes and trends over defined periods.
-
-## Domain assignment
-
-Datasets can be assigned to domains for organizational purposes. Domains help group related tables across datasources and make large asset inventories easier to navigate.

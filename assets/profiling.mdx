@@ -1,0 +1,67 @@
+---
+title: Profiling
+description: Datachecks profiles your datasets using both statistical and semantic analysis to give you a complete picture of your data before and after migration.
+---
+
+Profiling runs automatically when a dataset is scanned. It combines statistical metrics with AI-powered semantic analysis to characterize your data, identify sensitive columns, and recommend masking strategies.
+
+## Statistical profiling
+
+Statistical profiling collects quantitative metrics about your dataset:
+
+| Metric | Description |
+|--------|-------------|
+| **Row count** | Total number of rows in the dataset, tracked over time to detect unexpected changes |
+| **Column count** | Number of columns and their data types |
+| **Null counts** | Per-column null value counts used to power completeness validations |
+| **Distinct values** | Cardinality metrics used to power uniqueness validations |
+| **Distributions** | Value distribution metrics surfaced in the health score |
+
+These metrics feed directly into the dataset's health score and row trend charts visible in the [Assets](/assets/overview) overview tab.
+
+## Semantic profiling
+
+Semantic profiling uses AI to analyze a sample of values from each column and determine what kind of data it contains — beyond just the raw data type.
+
+For each column, the profiler produces:
+
+| Field | Description |
+|-------|-------------|
+| **Data type** | The storage type of the column (string, numeric, date, etc.) |
+| **Semantic type (general)** | Broad category — for example, `identifier`, `financial`, `contact`, `location` |
+| **Semantic type (specific)** | Precise type — for example, `email`, `phone`, `aadhar`, `pan`, `api_key`, `address` |
+| **Sensitivity** | How sensitive the column is — used to flag columns for masking |
+| **Confidence** | How confident the model is in its classification |
+
+Semantic profiling examines up to five sample values per column and is powered by an LLM prompt that evaluates naming conventions, value patterns, and domain context together.
+
+## Sensitive column identification
+
+Columns with a high sensitivity rating are automatically flagged as potentially containing PII or confidential data. These columns appear visually marked in the dataset view and are candidates for masking.
+
+Sensitivity is assessed based on the semantic type detected — for example, columns identified as `email`, `phone`, `aadhar`, `pan`, `bank_account`, or `api_key` are treated as sensitive.
+
+## Masking strategies
+
+Once a sensitive column is identified, the profiler recommends a masking strategy. The following strategies are supported:
+
+| Strategy | Description | Example |
+|----------|-------------|---------|
+| `keep_last_n` | Mask all but the last N characters | `****9012` |
+| `keep_prefix` | Keep the first N characters, mask the rest | `AB*******` |
+| `mask_username_in_email` | Mask the email username, preserve the domain | `r***@example.com` |
+| `numeric_random_same_length` | Replace digits with random digits, preserve separators | `+91-8234167890` |
+| `date_mask_parts` | Mask year, month, or day portions of a date | `****-08-15` |
+| `hash_sha256` | Replace with a SHA-256 hash (optionally salted) | `3a5b9f2c...` |
+| `tokenize_uuid` | Replace with a random UUID | `f47ac10b-...` |
+| `none` | No masking applied | — |
+
+Masking is applied in the UI so that sensitive values are not displayed to users in shared workspaces. The underlying data in your database is not modified.
+
+## When profiling runs
+
+Profiling runs automatically when:
+- A dataset is first discovered after connecting a datasource
+- You manually trigger a **Rescan** from the Assets view
+
+You can view the profiling results for any column from the dataset detail view.

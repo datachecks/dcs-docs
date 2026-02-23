@@ -68,7 +68,13 @@
           {
             "group": "Features",
             "pages": [
-              "assets/overview",
+              {
+                "group": "Assets",
+                "pages": [
+                  "assets/overview",
+                  "assets/profiling"
+                ]
+              },
               {
                 "group": "Validation",
                 "pages": [
