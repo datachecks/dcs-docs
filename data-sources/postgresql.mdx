@@ -1,6 +1,32 @@
 ---
-title: Postgresql
-description: Connect Postgresql as a data source in Datachecks.
+title: PostgreSQL
+description: Connect PostgreSQL as a data source in Datachecks.
 ---
 
-<Note>This page is coming soon.</Note>
+To add PostgreSQL as a data source, go to **Settings → Workspace → Integrations → Datasources** and click **New Datasource**. Select **PostgreSQL** and fill in the connection parameters below, then click **Test & Save Datasource**.
+
+## Connection parameters
+
+| Field | Description |
+|-------|-------------|
+| **Connection Name** | A label for this connection within Datachecks |
+| **Host** | The server name hosting your database |
+| **Port** | Default is `5432`. Specify an alternative if your server uses a different port |
+| **Username** | The dedicated user for Datachecks |
+| **Password** | The password for the Datachecks user |
+| **Database** | The name of the PostgreSQL database you want to connect to |
+| **Schema** | Optional — specify to limit access to a single schema |
+
+## Setup
+
+Run the following SQL on your PostgreSQL instance to create a dedicated user for Datachecks.
+
+```sql
+CREATE SCHEMA datachecks_tmp;
+CREATE ROLE datachecks WITH LOGIN ENCRYPTED PASSWORD 'YourSecurePassword';
+GRANT ALL ON SCHEMA datachecks_tmp TO datachecks;
+GRANT USAGE ON SCHEMA <myschema> TO datachecks;
+GRANT SELECT ON ALL TABLES IN SCHEMA <myschema> TO datachecks;
+```
+
+The `datachecks_tmp` schema is used for temporary processing and keeps Datachecks operations isolated from your production data.

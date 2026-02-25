@@ -3,4 +3,65 @@ title: Snowflake
 description: Connect Snowflake as a data source in Datachecks.
 ---
 
-<Note>This page is coming soon.</Note>
+To add Snowflake as a data source, go to **Settings → Workspace → Integrations → Datasources** and click **New Datasource**. Select **Snowflake** and fill in the connection parameters below, then click **Test & Save Datasource**.
+
+## Connection parameters
+
+| Field | Description |
+|-------|-------------|
+| **Connection Name** | A label for this connection within Datachecks |
+| **Account Identifier** | The unique identifier for your Snowflake account |
+| **Username** | The dedicated user for Datachecks |
+| **Password** | The password for the Datachecks user |
+| **Warehouse** | The Snowflake virtual warehouse used for query execution |
+| **Database** | The Snowflake database you want to connect to |
+| **Role** | The role assigned to the Datachecks user |
+| **Schema** | Optional — specify to limit access to a single schema |
+
+## Setup
+
+Run the following SQL in your Snowflake account to create a dedicated role and user for Datachecks.
+
+### 1. Create role and user
+
+```sql
+CREATE ROLE DATACHECKSROLE;
+CREATE USER DATACHECKS
+  DEFAULT_ROLE = "DATACHECKSROLE"
+  MUST_CHANGE_PASSWORD = FALSE;
+GRANT ROLE DATACHECKSROLE TO USER DATACHECKS;
+```
+
+### 2. Set password
+
+```sql
+ALTER USER DATACHECKS SET PASSWORD = 'YourStrongPassword';
+```
+
+### 3. Grant execution monitoring
+
+```sql
+GRANT MONITOR EXECUTION ON ACCOUNT TO ROLE DATACHECKSROLE;
+GRANT IMPORTED PRIVILEGES ON DATABASE SNOWFLAKE TO ROLE DATACHECKSROLE;
+```
+
+### 4. Create temporary schema
+
+Datachecks uses this schema for intermediate processing.
+
+```sql
+CREATE SCHEMA <database_name>.DATACHECKS_TMP;
+GRANT ALL ON SCHEMA <database_name>.DATACHECKS_TMP TO ROLE DATACHECKSROLE;
+```
+
+### 5. Grant data access
+
+Repeat for each database you want to connect:
+
+```sql
+GRANT USAGE ON WAREHOUSE <warehouse_name> TO ROLE DATACHECKSROLE;
+GRANT USAGE ON DATABASE <database_name> TO ROLE DATACHECKSROLE;
+GRANT USAGE ON ALL SCHEMAS IN DATABASE <database_name> TO ROLE DATACHECKSROLE;
+GRANT SELECT ON ALL TABLES IN DATABASE <database_name> TO ROLE DATACHECKSROLE;
+GRANT SELECT ON ALL VIEWS IN DATABASE <database_name> TO ROLE DATACHECKSROLE;
+```

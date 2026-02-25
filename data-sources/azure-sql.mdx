@@ -1,6 +1,37 @@
 ---
-title: Azure Sql
-description: Connect Azure Sql as a data source in Datachecks.
+title: Azure SQL
+description: Connect Azure SQL as a data source in Datachecks.
 ---
 
-<Note>This page is coming soon.</Note>
+To add Azure SQL as a data source, go to **Settings → Workspace → Integrations → Datasources** and click **New Datasource**. Select **Azure SQL** and fill in the connection parameters below, then click **Test & Save Datasource**.
+
+## Connection parameters
+
+| Field | Description |
+|-------|-------------|
+| **Connection Name** | A label for this connection within Datachecks |
+| **Host** | The server name hosting your database |
+| **Port** | Default is `1433`. Specify an alternative if your server uses a different port |
+| **Username** | The dedicated user for Datachecks |
+| **Password** | The password for the Datachecks user |
+| **Database** | The name of the Azure SQL database you want to connect to |
+| **Schema** | The schema you want to access |
+| **ODBC Driver** | The driver required to establish the connection (for example, `ODBC Driver 18`) |
+
+## Setup
+
+Run the following SQL on your Azure SQL instance to create a dedicated user for Datachecks.
+
+```sql
+USE DatabaseName;
+
+CREATE SCHEMA datachecks_tmp;
+
+CREATE LOGIN DatachecksUser WITH PASSWORD = 'YourSecurePassword';
+CREATE USER DatachecksUser FOR LOGIN DatachecksUser;
+
+GRANT SELECT ON SCHEMA::YourSchema TO DatachecksUser;
+GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA::datachecks_tmp TO DatachecksUser;
+```
+
+The `datachecks_tmp` schema is used for intermediate processing and keeps Datachecks operations isolated from your production data.

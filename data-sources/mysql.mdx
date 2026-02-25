@@ -1,6 +1,32 @@
 ---
-title: Mysql
-description: Connect Mysql as a data source in Datachecks.
+title: MySQL
+description: Connect MySQL as a data source in Datachecks.
 ---
 
-<Note>This page is coming soon.</Note>
+To add MySQL as a data source, go to **Settings → Workspace → Integrations → Datasources** and click **New Datasource**. Select **MySQL** and fill in the connection parameters below, then click **Test & Save Datasource**.
+
+## Connection parameters
+
+| Field | Description |
+|-------|-------------|
+| **Connection Name** | A label for this connection within Datachecks |
+| **Host** | The server name hosting your database |
+| **Port** | Default is `3306`. Specify an alternative if your server uses a different port |
+| **Username** | The dedicated user for Datachecks |
+| **Password** | The password for the Datachecks user |
+| **Database** | The name of the MySQL database you want to connect to |
+| **Security** | Authentication methods or encryption settings (for example, SSL/TLS) |
+
+## Setup
+
+Run the following SQL on your MySQL instance to create a dedicated user for Datachecks.
+
+```sql
+CREATE DATABASE IF NOT EXISTS datachecks_tmp;
+CREATE USER 'datachecks_user'@'%' IDENTIFIED BY 'YourSecurePassword';
+GRANT SELECT ON `YourSchema`.* TO 'datachecks_user'@'%';
+GRANT ALL ON `datachecks_tmp`.* TO 'datachecks_user'@'%';
+FLUSH PRIVILEGES;
+```
+
+The `datachecks_tmp` database is used for temporary processing and keeps Datachecks operations isolated from your production data.

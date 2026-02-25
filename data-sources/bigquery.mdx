@@ -1,6 +1,20 @@
 ---
-title: Bigquery
-description: Connect Bigquery as a data source in Datachecks.
+title: BigQuery
+description: Connect BigQuery as a data source in Datachecks.
 ---
 
-<Note>This page is coming soon.</Note>
+To add BigQuery as a data source, go to **Settings → Workspace → Integrations → Datasources** and click **New Datasource**. Select **BigQuery** and fill in the connection parameters below, then click **Test & Save Datasource**.
+
+## Connection parameters
+
+| Field | Description |
+|-------|-------------|
+| **Connection Name** | A label for this connection within Datachecks |
+| **Project** | Your BigQuery project ID, found in the URL of your Google Cloud Console |
+| **Dataset** | The name of the dataset you want to connect |
+| **Key** | The service account key with access to your BigQuery datasets |
+
+## Notes
+
+- The service account must have sufficient permissions to read the target dataset.
+- The project ID can be found in your Google Cloud Console URL.

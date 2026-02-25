@@ -156,8 +156,8 @@
     }
   },
   "logo": {
-    "light": "/logo/dcs_logo_full_white.svg",
-    "dark": "/logo/dcs_logo_full_white.svg"
+    "light": "/logo/dcs_full_white.svg",
+    "dark": "/logo/dcs_full_white.svg"
   },
   "navbar": {
     "links": [

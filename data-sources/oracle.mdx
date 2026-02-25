@@ -3,4 +3,33 @@ title: Oracle
 description: Connect Oracle as a data source in Datachecks.
 ---
 
-<Note>This page is coming soon.</Note>
+To add Oracle as a data source, go to **Settings → Workspace → Integrations → Datasources** and click **New Datasource**. Select **Oracle** and fill in the connection parameters below, then click **Test & Save Datasource**.
+
+## Connection parameters
+
+| Field | Description |
+|-------|-------------|
+| **Connection Name** | A label for this connection within Datachecks |
+| **Host** | The server name hosting your database |
+| **Port** | Default is `1521`. Specify an alternative if your server uses a different port |
+| **Username** | The dedicated user for Datachecks |
+| **Password** | The password for the Datachecks user |
+| **Service Name** | The database or service name to connect to |
+
+## Setup
+
+Run the following SQL to create a dedicated user with the required permissions.
+
+```sql
+ALTER SESSION SET CONTAINER = YOURCONTAINER;
+
+CREATE USER DATACHECKS IDENTIFIED BY YourSecurePassword;
+GRANT CREATE SESSION TO DATACHECKS;
+GRANT CREATE TABLE TO DATACHECKS;
+GRANT SELECT ON "YOURSCHEMA"."YOURTABLE" TO DATACHECKS;
+GRANT EXECUTE ON SYS.DBMS_CRYPTO TO DATACHECKS;
+GRANT UNLIMITED TABLESPACE TO DATACHECKS;
+COMMIT;
+```
+
+Datachecks uses a temporary schema within the DATACHECKS user for intermediate processing, keeping your production data unchanged.

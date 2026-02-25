@@ -3,4 +3,16 @@ title: Databricks
 description: Connect Databricks as a data source in Datachecks.
 ---
 
-<Note>This page is coming soon.</Note>
+To add Databricks as a data source, go to **Settings → Workspace → Integrations → Datasources** and click **New Datasource**. Select **Databricks** and fill in the connection parameters below, then click **Test & Save Datasource**.
+
+## Connection parameters
+
+| Field | Description |
+|-------|-------------|
+| **Connection Name** | A label for this connection within Datachecks |
+| **Host** | The server name hosting your Databricks workspace |
+| **Port** | Default is `443`. Specify an alternative if your server uses a different port |
+| **HTTP Path** | The HTTP path for your Databricks SQL warehouse |
+| **Access Token** | The authentication token for secure access |
+| **Catalog** | The catalog within Databricks where your database resides |
+| **Schema** | The schema you want to access |
