@@ -1,57 +1,57 @@
 ---
 title: Quickstart
-description: Connect a data source and run your first comparison in five steps.
+description: Connect a data source and use the Asset Discovery agent to explore your data in minutes.
 ---
 
 ## Prerequisites
 
 - Admin access to your Datachecks workspace
-- Credentials for at least one supported database (source and target)
+- Credentials for at least one supported database
 
 ---
 
-## Step 1: Connect your data sources
+## Step 1: Add a data source
 
-Go to **Settings → Integrations → Data Sources** and add your source and target databases.
+Go to **Settings → Workspace → Integrations → Datasources** and click **New Datasource**.
 
-Only admin users can add data sources. Datachecks supports Snowflake, Databricks, BigQuery, PostgreSQL, MySQL, Oracle, Azure SQL, and Sybase.
+Enter your database credentials and save. Datachecks supports Snowflake, Databricks, BigQuery, PostgreSQL, MySQL, Oracle, Azure SQL, and Sybase.
 
 See [Data Sources](/data-sources/overview) for connection details by database type.
 
-## Step 2: Add data sources to your workspace
+## Step 2: Create an Asset Discovery agent
 
-After connecting, go to **Settings → Workspaces → Data Sources** and link the data sources to your workspace. This makes them available to agents, validations, and comparisons.
+1. Go to the **Agents** tab in the left sidebar.
+2. Click **Create Agent**.
+3. Select **Asset Discovery** as the agent type.
+4. Select the data source you just added, and give the agent a name and description.
+5. Click **Create** to save.
 
-## Step 3: Explore your assets
+## Step 3: Run the agent
 
-Once linked, Datachecks discovers the datasets (tables and views) in each data source and registers them as assets. Go to **Assets** to browse them.
+1. Click the agent you created.
+2. Select the tables you want to explore — you can select all tables or choose specific ones.
+3. Click **Run**. A chat window opens.
 
-From the Assets view you can:
-- View schema and column metadata
-- Review AI-generated validation suggestions
-- Enable or reject validation recommendations individually or in bulk
+## Step 4: Explore your tables and data
 
-## Step 4: Run your first comparison
+In the chat window, ask the agent questions about your data:
 
-Go to **Comparisons → Create** and configure a comparison between a source dataset and its corresponding target dataset. Select the columns to compare, set primary keys, and submit.
+- *"What tables are in this schema?"*
+- *"What columns does the `orders` table have?"*
+- *"Which columns might contain PII?"*
+- *"Write a query that shows the top 10 customers by order value."*
 
-Datachecks creates a job that runs the comparison asynchronously. Go to **Jobs** to monitor progress.
-
-## Step 5: Review results and configure alerts
-
-When the comparison job completes, open the result to see row counts, differential percentages, and any data mismatches.
-
-To get notified automatically when issues are detected, configure notification channels under **Settings → Notifications**.
+The agent retrieves schema context and generates SQL queries on demand.
 
 ---
 
 ## Next steps
 
 <CardGroup cols={2}>
-  <Card title="Agents" icon="robot" href="/agents/overview">
-    Use AI agents to discover assets, assess migration complexity, and translate SQL.
+  <Card title="Migration Assessment" icon="chart-bar" href="/agents/migration-assessment">
+    Analyze stored procedures and views to assess migration complexity.
   </Card>
   <Card title="Validations" icon="shield-check" href="/validation/overview">
-    Set up ongoing data quality checks on your assets.
+    Set up data quality checks on your assets.
   </Card>
 </CardGroup>

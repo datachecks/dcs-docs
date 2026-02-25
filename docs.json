@@ -17,8 +17,8 @@
             "group": "Getting Started",
             "pages": [
               "index",
-              "getting-started/core-concepts",
               "getting-started/quickstart",
+              "getting-started/core-concepts",
               {
                 "group": "Manage Your Team",
                 "pages": [
@@ -143,21 +143,21 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Website",
+          "anchor": "About Datachecks",
           "href": "https://www.datachecks.io",
-          "icon": "globe"
+          "icon": "home"
         },
         {
-          "anchor": "Support",
-          "href": "mailto:support@datachecks.io",
-          "icon": "envelope"
+          "anchor": "Blog",
+          "href": "https://www.datachecks.io/blog",
+          "icon": "pencil"
         }
       ]
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/dcs_logo_full_white.svg",
+    "dark": "/logo/dcs_logo_full_white.svg"
   },
   "navbar": {
     "links": [
@@ -168,7 +168,7 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Get Started",
+      "label": "Request a Demo",
       "href": "https://www.datachecks.io"
     }
   },
@@ -182,8 +182,8 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/datachecks_io",
-      "linkedin": "https://linkedin.com/company/datachecks"
+      "linkedin": "https://linkedin.com/company/datachecks",
+      "github": "https://github.com/datachecks"
     }
   }
 }

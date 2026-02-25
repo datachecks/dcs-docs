@@ -3,48 +3,34 @@ title: Migration Assessment Agent
 description: Analyze stored procedures, views, and SQL complexity in your source database and get a structured migration readiness report.
 ---
 
-The Migration Assessment agent analyzes your source database to evaluate migration complexity before you begin. It examines stored procedures, views, and translation difficulty, then generates a structured report with an executive summary and detailed findings.
+The Migration Assessment agent analyzes your source database to evaluate migration complexity before you begin. It examines stored procedures, views, and translation difficulty, then generates a structured assessment dashboard with an executive summary and detailed findings.
 
 ## What it does
 
 - Analyzes stored procedures for migration complexity
 - Evaluates views and their dependencies
 - Assesses translation difficulty for SQL logic in the source dialect
-- Generates an executive summary and a detailed migration readiness report
-- Supports re-analysis when scope changes
+- Generates an assessment dashboard with an executive summary and detailed findings
+- Lets you refine and update the assessment through chat
 
-## How it works
+## Create an agent
 
-The agent runs a multi-step parallel analysis workflow:
+1. Go to the **Agents** tab in the left sidebar.
+2. Click **Create Agent**.
+3. Select **Migration Assessment** as the agent type.
+4. Select the source data source, and add a name and description for the agent.
+5. Select the target database type (for example, Snowflake, BigQuery, Databricks).
+6. Click **Create** to save.
 
-```
-Start
-  ↓
-Preparation
-(gather schema metadata and scope)
-  ↓
-Gathering summary
-  ↓
-Parallel analysis
-  ┌─────────────────────┬───────────────────────┐
-  │                     │                       │
-Analyze              Analyze               Analyze
-procedures           views              translation
-  │                                          │
-  └──────────────────────────────────────────┘
-                       ↓
-           Generate executive summary
-                       ↓
-              Generate final report
-                       ↓
-                      END
-```
+## Run an agent
 
-The procedures and views analysis runs in parallel, converging at the summary generation step. If you modify the scope (for example, add more procedures to analyze), the agent can re-run the analysis for the updated scope.
+1. Go to the **Agents** tab and click the agent you created.
+2. Click **Run** to start the assessment. The agent analyzes your source database and produces an assessment dashboard.
+3. You can create multiple runs and view previous runs at any time.
 
-## What the report contains
+## Assessment dashboard
 
-The migration assessment report includes:
+When the run completes, the agent produces an assessment dashboard you can use to evaluate migration readiness. The dashboard includes:
 
 | Section | Description |
 |---------|-------------|
@@ -53,29 +39,4 @@ The migration assessment report includes:
 | **View Analysis** | View dependency mapping and complexity flags |
 | **Translation Analysis** | Assessment of SQL constructs that require translation, with complexity estimates |
 
-## Prerequisites
-
-Before running the Migration Assessment agent:
-
-1. Your source data source must be connected and added to your workspace. See [Data Sources](/data-sources/overview).
-2. The source database should contain stored procedures and/or views for the agent to analyze.
-
-## Running the agent
-
-1. Navigate to the **Agents** tab in the left sidebar.
-2. Start a new session and select or indicate the Migration Assessment context.
-3. Specify the scope — which data source, schema, or set of objects to assess.
-4. The agent begins the analysis. Monitor progress in **Jobs**.
-5. When complete, the final report is available in the agent session and the Jobs view.
-
-## Re-running the assessment
-
-If you modify the scope after an initial run (for example, add procedures you previously excluded), the agent detects the change and automatically re-analyzes the affected objects. Previous results are preserved for comparison.
-
-## Output
-
-The agent produces a structured report that you can use to:
-- Estimate migration effort and timeline
-- Identify high-complexity objects that need manual review
-- Prioritize which SQL logic to translate first
-- Share findings with stakeholders before committing to the migration
+You can continue the conversation in the chat to ask follow-up questions, request a deeper analysis of specific objects, or update the scope. The agent will modify the assessment dashboard based on your input.

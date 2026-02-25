@@ -3,32 +3,31 @@ title: Data Validation Agent
 description: Describe what you want to validate in plain language and the agent configures the validation for you.
 ---
 
-The Data Validation agent helps you set up validations without manually navigating configuration options. You describe what you want to check — the agent identifies the target table and validation type and generates the appropriate validation configuration.
+The Data Validation agent helps you set up validations without manually navigating configuration options. Describe what you want to check — the agent identifies the target dataset and validation type, then generates the appropriate validation configuration for your approval.
 
 ## What it does
 
-- Extracts the target table from your natural language description
-- Identifies the relevant validation type (null checks, uniqueness, range checks, custom SQL, and more)
-- Generates a validation configuration ready to enable on your asset
+- Identifies the target dataset from your natural language description
+- Determines the appropriate validation type
+- Generates validation configurations with a description and confidence score
+- Waits for your approval before making tests available to run
 
-## How it works
+## Create an agent
 
-The agent follows a three-step workflow:
+1. Go to the **Agents** tab in the left sidebar.
+2. Click **Create Agent**.
+3. Select **Validation Generation** as the agent type.
+4. Select the data source, and add a name and description for the agent.
+5. Optionally, add additional instructions to guide the agent's behavior (for example, focus areas or validation preferences).
+6. Click **Create** to save.
 
-```
-User message
-      ↓
-Extract table
-(identify which dataset the validation applies to)
-      ↓
-Extract validation type
-(identify what kind of check to configure)
-      ↓
-Generate response
-(return the validation configuration)
-```
+## Run an agent
 
-The agent maintains conversation state, so you can refine or follow up within the same session.
+1. Go to the **Agents** tab and click the agent you created.
+2. Select the table you want the agent to run on.
+3. Click **Run**. You can create multiple runs for the same agent, each targeting a different table.
+4. Once the run completes, the agent generates a list of validations — each with a description and a confidence score.
+5. Review each validation and **approve** the ones you want. Only approved validations become tests that are ready to run.
 
 ## Supported validation types
 
@@ -44,42 +43,3 @@ The agent can configure the following validation types:
 | **Delta Validation** | Checks the change between two time periods |
 
 For a full list of supported validation types and their configuration options, see [Validation Types](/reference/validation-types).
-
-## Example interactions
-
-```
-You: Check that the email column in the customer table has no nulls.
-
-Agent: I'll set up a NOT NULL validation on customer.email.
-       Here's the configuration: ...
-```
-
-```
-You: Make sure all order IDs in the orders table are unique.
-
-Agent: I'll configure a UNIQUE validation on orders.order_id.
-       Here's the configuration: ...
-```
-
-## Prerequisites
-
-Before using the Data Validation agent:
-
-1. Your data source must be connected and added to your workspace.
-2. The target datasets must be registered as assets. See [Assets](/assets/overview).
-
-## Running the agent
-
-1. Navigate to the **Agents** tab in the left sidebar.
-2. Start a new session in the Data Validation context.
-3. Describe the validation you want to set up.
-4. Review the generated configuration and confirm to enable it.
-
-## Enabling the validation
-
-After the agent generates a validation configuration, you can:
-- Enable it directly from the agent session
-- Navigate to **Assets** and enable it from the asset's validation list
-- Review and adjust thresholds before enabling
-
-See [Validation](/validation/overview) for details on managing validations after they are set up.
