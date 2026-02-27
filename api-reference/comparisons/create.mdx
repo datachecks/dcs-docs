@@ -114,6 +114,60 @@ curl -X POST "https://api.datachecks.io/comparisons" \
     }
   }'
 ```
+
+```python
+import requests
+
+url = "https://api.datachecks.io/comparisons"
+headers = {
+    "Authorization": "Bearer <api-key>",
+    "Workspace-Id": "<workspace-id>",
+}
+payload = {
+    "name": "orders table comparison",
+    "source_datasource_id": "aaaaaaaa-0000-0000-0000-000000000001",
+    "target_datasource_id": "bbbbbbbb-0000-0000-0000-000000000002",
+    "source_dataset_id": "cccccccc-0000-0000-0000-000000000003",
+    "target_dataset_id": "dddddddd-0000-0000-0000-000000000004",
+    "configuration": {
+        "source_columns": ["order_id", "customer_id", "total"],
+        "target_columns": ["order_id", "customer_id", "total"],
+        "primary_keys_source": ["order_id"],
+        "primary_keys_target": ["order_id"],
+    },
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.json())
+```
+
+```javascript
+const payload = {
+  name: "orders table comparison",
+  source_datasource_id: "aaaaaaaa-0000-0000-0000-000000000001",
+  target_datasource_id: "bbbbbbbb-0000-0000-0000-000000000002",
+  source_dataset_id: "cccccccc-0000-0000-0000-000000000003",
+  target_dataset_id: "dddddddd-0000-0000-0000-000000000004",
+  configuration: {
+    source_columns: ["order_id", "customer_id", "total"],
+    target_columns: ["order_id", "customer_id", "total"],
+    primary_keys_source: ["order_id"],
+    primary_keys_target: ["order_id"],
+  },
+};
+
+const response = await fetch("https://api.datachecks.io/comparisons", {
+  method: "POST",
+  headers: {
+    "Authorization": "Bearer <api-key>",
+    "Workspace-Id": "<workspace-id>",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(payload),
+});
+const data = await response.json();
+console.log(data);
+```
 </RequestExample>
 
 <ResponseExample>

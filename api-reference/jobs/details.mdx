@@ -51,6 +51,36 @@ curl -X POST "https://api.datachecks.io/jobs/comparison/details" \
   -H "Content-Type: application/json" \
   -d '[1042, 1043]'
 ```
+
+```python
+import requests
+
+url = "https://api.datachecks.io/jobs/comparison/details"
+headers = {
+    "Authorization": "Bearer <api-key>",
+    "Workspace-Id": "<workspace-id>",
+}
+
+response = requests.post(url, json=[1042, 1043], headers=headers)
+print(response.json())
+```
+
+```javascript
+const response = await fetch(
+  "https://api.datachecks.io/jobs/comparison/details",
+  {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer <api-key>",
+      "Workspace-Id": "<workspace-id>",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify([1042, 1043]),
+  }
+);
+const data = await response.json();
+console.log(data);
+```
 </RequestExample>
 
 <ResponseExample>
