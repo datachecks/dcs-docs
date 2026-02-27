@@ -81,7 +81,8 @@
                 "pages": [
                   "validation/overview",
                   "validation/details",
-                  "validation/configure"
+                  "validation/configure",
+                  "reference/windows"
                 ]
               },
               {
@@ -121,7 +122,6 @@
               "reference/audit-logs",
               "reference/validation-types",
               "reference/thresholds",
-              "reference/windows",
               "reference/functions",
               "reference/jobs",
               "reference/error-codes",
