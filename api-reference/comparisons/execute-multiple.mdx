@@ -1,0 +1,78 @@
+---
+title: "Execute Multiple Comparisons"
+api: "POST /comparisons/execute_multiple"
+description: "Execute a batch of comparisons as part of an agent run."
+---
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer <api-key>`
+</ParamField>
+
+<ParamField header="Workspace-Id" type="string" required>
+  Your workspace UUID.
+</ParamField>
+
+<ParamField body="agent_run_id" type="string" required>
+  UUID of the agent run this batch belongs to.
+</ParamField>
+
+<ParamField body="comparison_agent_configs" type="array" required>
+  List of comparison configurations to execute.
+
+  <Expandable title="comparison_agent_configs[]">
+    <ParamField body="id" type="integer" required>
+      Config ID used to map results back to the original configuration.
+    </ParamField>
+    <ParamField body="configuration" type="object" required>
+      Full comparison configuration. See [Create Comparison](/api-reference/comparisons/create) for the `configuration` schema.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+## Response
+
+<ResponseField name="message" type="string">Status message.</ResponseField>
+<ResponseField name="mapped_run_ids" type="object">
+  Map of config ID to job run ID. Use the run IDs to monitor progress via the Jobs API.
+</ResponseField>
+
+<RequestExample>
+```bash
+curl -X POST "https://api.datachecks.io/comparisons/execute_multiple" \
+  -H "Authorization: Bearer <api-key>" \
+  -H "Workspace-Id: <workspace-id>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "agent_run_id": "aaaaaaaa-1111-2222-3333-444444444444",
+    "comparison_agent_configs": [
+      {
+        "id": 1,
+        "configuration": {
+          "name": "orders comparison",
+          "source_datasource_id": "aaaaaaaa-0000-0000-0000-000000000001",
+          "target_datasource_id": "bbbbbbbb-0000-0000-0000-000000000002",
+          "source_dataset_id": "cccccccc-0000-0000-0000-000000000003",
+          "target_dataset_id": "dddddddd-0000-0000-0000-000000000004",
+          "configuration": {
+            "source_columns": ["order_id", "total"],
+            "target_columns": ["order_id", "total"],
+            "primary_keys_source": ["order_id"],
+            "primary_keys_target": ["order_id"]
+          }
+        }
+      }
+    ]
+  }'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "message": "Comparisons submitted for execution",
+  "mapped_run_ids": {
+    "1": 1043
+  }
+}
+```
+</ResponseExample>

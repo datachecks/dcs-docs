@@ -1,0 +1,61 @@
+---
+title: "Execute Comparison"
+api: "POST /comparisons/{comparison_id}/execute"
+description: "Submit a comparison for execution. Returns a job ID you can use to monitor progress."
+---
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer <api-key>`
+</ParamField>
+
+<ParamField header="Workspace-Id" type="string" required>
+  Your workspace UUID.
+</ParamField>
+
+<ParamField path="comparison_id" type="string" required>
+  UUID of the comparison to execute.
+</ParamField>
+
+<ParamField query="celery_task_id" type="string">
+  If provided, the running job with this task ID is terminated before a new execution starts.
+</ParamField>
+
+<ParamField query="enable_priority" type="boolean" default="false">
+  If `true`, the job is placed at the front of the execution queue.
+</ParamField>
+
+<ParamField query="translation_iteration_no" type="integer">
+  Translation iteration number. Used when executing as part of a translation workflow.
+</ParamField>
+
+<ParamField query="translation_run_id" type="string">
+  Translation run ID. Used when executing as part of a translation workflow.
+</ParamField>
+
+<ParamField query="current_event_key" type="string">
+  Event key for tracking the execution in an agent workflow.
+</ParamField>
+
+## Response
+
+<ResponseField name="message" type="string">Status message.</ResponseField>
+<ResponseField name="run_id" type="integer">The job ID. Use this to monitor progress via the Jobs API.</ResponseField>
+<ResponseField name="celery_task_id" type="string">The background task ID assigned to this execution.</ResponseField>
+
+<RequestExample>
+```bash
+curl -X POST "https://api.datachecks.io/comparisons/eeeeeeee-0000-0000-0000-000000000005/execute" \
+  -H "Authorization: Bearer <api-key>" \
+  -H "Workspace-Id: <workspace-id>"
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "message": "Comparison execution started",
+  "run_id": 1042,
+  "celery_task_id": "7f3a1b2c-4d5e-6f7a-8b9c-0d1e2f3a4b5c"
+}
+```
+</ResponseExample>

@@ -1,0 +1,78 @@
+---
+title: "Get Job Details"
+api: "POST /jobs/comparison/details"
+description: "Retrieve details for a list of comparison jobs by their job IDs."
+---
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer <api-key>`
+</ParamField>
+
+<ParamField header="Workspace-Id" type="string" required>
+  Your workspace UUID.
+</ParamField>
+
+<ParamField body="job_ids" type="array" required>
+  List of integer job IDs to fetch details for.
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="array">
+  List of job detail objects.
+
+  <Expandable title="data[]">
+    <ResponseField name="run_id" type="integer">Job ID.</ResponseField>
+    <ResponseField name="comparison_id" type="string">UUID of the comparison.</ResponseField>
+    <ResponseField name="comparison_name" type="string">Name of the comparison.</ResponseField>
+    <ResponseField name="status" type="string">Job status. One of `PENDING`, `STARTED`, `SUCCESS`, `FAILURE`, `REVOKED`.</ResponseField>
+    <ResponseField name="failure_reason" type="string">Reason for failure, if applicable.</ResponseField>
+    <ResponseField name="started_at" type="string">ISO 8601 start timestamp.</ResponseField>
+    <ResponseField name="finished_at" type="string">ISO 8601 completion timestamp.</ResponseField>
+    <ResponseField name="result" type="object">
+      Comparison result summary. Present only when status is `SUCCESS`.
+
+      <Expandable title="result">
+        <ResponseField name="diff_status" type="string">Overall diff outcome. One of `MATCH`, `MISMATCH`.</ResponseField>
+        <ResponseField name="diff_reasons" type="array">List of reasons explaining differences found.</ResponseField>
+        <ResponseField name="time_taken" type="number">Execution duration in seconds.</ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="meta" type="object">Additional metadata.</ResponseField>
+
+<RequestExample>
+```bash
+curl -X POST "https://api.datachecks.io/jobs/comparison/details" \
+  -H "Authorization: Bearer <api-key>" \
+  -H "Workspace-Id: <workspace-id>" \
+  -H "Content-Type: application/json" \
+  -d '[1042, 1043]'
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "data": [
+    {
+      "run_id": 1042,
+      "comparison_id": "eeeeeeee-0000-0000-0000-000000000005",
+      "comparison_name": "orders table comparison",
+      "status": "SUCCESS",
+      "failure_reason": null,
+      "started_at": "2025-01-15T10:00:02Z",
+      "finished_at": "2025-01-15T10:01:45Z",
+      "result": {
+        "diff_status": "MISMATCH",
+        "diff_reasons": ["Row count mismatch", "Column value differences in total"],
+        "time_taken": 103.2
+      }
+    }
+  ],
+  "meta": {}
+}
+```
+</ResponseExample>

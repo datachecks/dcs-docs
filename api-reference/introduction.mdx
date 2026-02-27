@@ -26,4 +26,39 @@ https://api.datachecks.io
 
 The current API version is `v1`. All endpoints are prefixed with `/api/v1/`.
 
-<Note>Full API reference documentation is coming soon. The OpenAPI spec will be available at `/openapi.json` from your Datachecks instance.</Note>
+## Scopes
+
+API keys are scoped to control what operations they can perform. Each endpoint requires a specific scope:
+
+| Scope | Description |
+|-------|-------------|
+| `read:datasource` | List and read data sources |
+| `read:job` | List and read comparison jobs |
+| `write:job` | Terminate jobs |
+| `write:comparison` | Create and execute comparisons |
+
+## Response format
+
+All responses use a consistent envelope format:
+
+```json
+{
+  "message": "...",
+  "meta": {},
+  "data": { ... }
+}
+```
+
+Paginated responses include pagination metadata inside `data`:
+
+```json
+{
+  "data": {
+    "items": [...],
+    "page": 1,
+    "size": 50,
+    "total": 120,
+    "pages": 3
+  }
+}
+```

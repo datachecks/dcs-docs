@@ -1,0 +1,135 @@
+---
+title: "List Comparison Jobs"
+api: "GET /jobs/comparison"
+description: "List comparison jobs in the workspace with optional status, dataset, and time range filters."
+---
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer <api-key>`
+</ParamField>
+
+<ParamField header="Workspace-Id" type="string" required>
+  Your workspace UUID.
+</ParamField>
+
+<ParamField query="page" type="integer" default="1">
+  Page number for pagination.
+</ParamField>
+
+<ParamField query="size" type="integer" default="50">
+  Number of results per page.
+</ParamField>
+
+<ParamField query="filter" type="string">
+  Search string to filter jobs by comparison name.
+</ParamField>
+
+<ParamField query="status_filters" type="string">
+  Comma-separated list of statuses to include. Example: `SUCCESS,FAILURE`.
+</ParamField>
+
+<ParamField query="source_dataset_filters" type="string">
+  Comma-separated list of source dataset names to filter by.
+</ParamField>
+
+<ParamField query="target_dataset_filters" type="string">
+  Comma-separated list of target dataset names to filter by.
+</ParamField>
+
+<ParamField query="start_time" type="string">
+  ISO 8601 start of the time range. Defaults to 30 days ago.
+</ParamField>
+
+<ParamField query="end_time" type="string">
+  ISO 8601 end of the time range. Defaults to now.
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Paginated list of jobs.
+
+  <Expandable title="data">
+    <ResponseField name="items" type="array">
+      List of comparison job objects.
+
+      <Expandable title="items[]">
+        <ResponseField name="job_id" type="integer">Job ID.</ResponseField>
+        <ResponseField name="comparison_id" type="string">UUID of the comparison.</ResponseField>
+        <ResponseField name="comparison_name" type="string">Name of the comparison.</ResponseField>
+        <ResponseField name="comparison_result_id" type="string">UUID of the result record, once available.</ResponseField>
+        <ResponseField name="status" type="string">Job status. One of `PENDING`, `STARTED`, `SUCCESS`, `FAILURE`, `REVOKED`.</ResponseField>
+        <ResponseField name="source_datasource_name" type="string">Source data source name.</ResponseField>
+        <ResponseField name="target_datasource_name" type="string">Target data source name.</ResponseField>
+        <ResponseField name="source_dataset_name" type="string">Source dataset name.</ResponseField>
+        <ResponseField name="target_dataset_name" type="string">Target dataset name.</ResponseField>
+        <ResponseField name="source_datasource_type" type="string">Source database type.</ResponseField>
+        <ResponseField name="target_datasource_type" type="string">Target database type.</ResponseField>
+        <ResponseField name="task_id" type="string">Celery task ID.</ResponseField>
+        <ResponseField name="created_at" type="string">ISO 8601 creation timestamp.</ResponseField>
+        <ResponseField name="started_at" type="string">ISO 8601 start timestamp.</ResponseField>
+        <ResponseField name="date_done" type="string">ISO 8601 completion timestamp.</ResponseField>
+        <ResponseField name="time_taken" type="number">Execution duration in seconds.</ResponseField>
+        <ResponseField name="retry_count" type="integer">Number of retries.</ResponseField>
+        <ResponseField name="message" type="string">Status or error message.</ResponseField>
+      </Expandable>
+    </ResponseField>
+
+    <ResponseField name="page" type="integer">Current page.</ResponseField>
+    <ResponseField name="size" type="integer">Page size.</ResponseField>
+    <ResponseField name="total" type="integer">Total number of jobs.</ResponseField>
+    <ResponseField name="pages" type="integer">Total pages.</ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="meta" type="object">
+  Includes available filter values for `status_filters`, `source_dataset_filters`, and `target_dataset_filters`.
+</ResponseField>
+
+<RequestExample>
+```bash
+curl -X GET "https://api.datachecks.io/jobs/comparison?page=1&size=20&status_filters=FAILURE" \
+  -H "Authorization: Bearer <api-key>" \
+  -H "Workspace-Id: <workspace-id>"
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "data": {
+    "items": [
+      {
+        "job_id": 1042,
+        "comparison_id": "eeeeeeee-0000-0000-0000-000000000005",
+        "comparison_name": "orders table comparison",
+        "comparison_result_id": "ffffffff-0000-0000-0000-000000000006",
+        "status": "SUCCESS",
+        "source_datasource_name": "prod-postgres",
+        "target_datasource_name": "prod-snowflake",
+        "source_dataset_name": "orders",
+        "target_dataset_name": "orders",
+        "source_datasource_type": "postgresql",
+        "target_datasource_type": "snowflake",
+        "task_id": "7f3a1b2c-4d5e-6f7a-8b9c-0d1e2f3a4b5c",
+        "created_at": "2025-01-15T10:00:00Z",
+        "started_at": "2025-01-15T10:00:02Z",
+        "date_done": "2025-01-15T10:01:45Z",
+        "time_taken": 103.2,
+        "retry_count": 0,
+        "message": ""
+      }
+    ],
+    "page": 1,
+    "size": 20,
+    "total": 1,
+    "pages": 1
+  },
+  "meta": {
+    "status_filters": ["SUCCESS", "FAILURE", "PENDING"],
+    "source_dataset_filters": ["orders"],
+    "target_dataset_filters": ["orders"]
+  }
+}
+```
+</ResponseExample>

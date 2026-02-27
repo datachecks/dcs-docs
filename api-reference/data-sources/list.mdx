@@ -1,0 +1,117 @@
+---
+title: "List Data Sources"
+api: "GET /sources"
+description: "List all data sources in the workspace with optional filtering, sorting, and pagination."
+---
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer <api-key>`
+</ParamField>
+
+<ParamField header="Workspace-Id" type="string" required>
+  Your workspace UUID.
+</ParamField>
+
+<ParamField query="filter" type="string">
+  Search string to filter data sources by name.
+</ParamField>
+
+<ParamField query="page" type="integer" default="1">
+  Page number for pagination.
+</ParamField>
+
+<ParamField query="size" type="integer" default="50">
+  Number of results per page.
+</ParamField>
+
+<ParamField query="sort_by" type="string" default="last_scanned">
+  Field to sort by. Options: `last_scanned`, `name`, `type`.
+</ParamField>
+
+<ParamField query="sort_order" type="string" default="desc">
+  Sort direction. Options: `asc`, `desc`.
+</ParamField>
+
+<ParamField query="interactive" type="boolean">
+  Filter by interactive status. Omit to return all.
+</ParamField>
+
+<ParamField query="is_settings_page" type="boolean" default="false">
+  Returns additional fields used by the settings view.
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Paginated response object.
+
+  <Expandable title="data">
+    <ResponseField name="items" type="array">
+      List of data source objects.
+
+      <Expandable title="items[]">
+        <ResponseField name="id" type="string">UUID of the data source.</ResponseField>
+        <ResponseField name="name" type="string">Name of the data source.</ResponseField>
+        <ResponseField name="type" type="string">Database type (e.g. `snowflake`, `bigquery`, `postgresql`).</ResponseField>
+        <ResponseField name="status" type="string">Connection status.</ResponseField>
+        <ResponseField name="is_interactive" type="boolean">Whether the data source is interactive.</ResponseField>
+        <ResponseField name="dataset_count" type="integer">Number of registered datasets.</ResponseField>
+        <ResponseField name="validation_count" type="integer">Total number of validations.</ResponseField>
+        <ResponseField name="failed_validation_count" type="integer">Number of failing validations.</ResponseField>
+        <ResponseField name="column_count" type="integer">Total number of columns.</ResponseField>
+        <ResponseField name="sensitive_column_count" type="integer">Number of sensitive columns detected.</ResponseField>
+        <ResponseField name="last_scanned_at" type="string">ISO 8601 timestamp of the last scan.</ResponseField>
+        <ResponseField name="database_version" type="string">Database engine version.</ResponseField>
+        <ResponseField name="workspace_id" type="string">Workspace UUID this data source belongs to.</ResponseField>
+      </Expandable>
+    </ResponseField>
+
+    <ResponseField name="page" type="integer">Current page number.</ResponseField>
+    <ResponseField name="size" type="integer">Page size.</ResponseField>
+    <ResponseField name="total" type="integer">Total number of results.</ResponseField>
+    <ResponseField name="pages" type="integer">Total number of pages.</ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="message" type="string">Status message.</ResponseField>
+<ResponseField name="meta" type="object">Additional metadata.</ResponseField>
+
+<RequestExample>
+```bash
+curl -X GET "https://api.datachecks.io/sources?page=1&size=20&sort_by=name&sort_order=asc" \
+  -H "Authorization: Bearer <api-key>" \
+  -H "Workspace-Id: <workspace-id>"
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "message": "",
+  "meta": {},
+  "data": {
+    "items": [
+      {
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "name": "production-snowflake",
+        "type": "snowflake",
+        "status": "active",
+        "is_interactive": true,
+        "dataset_count": 42,
+        "validation_count": 128,
+        "failed_validation_count": 3,
+        "column_count": 560,
+        "sensitive_column_count": 12,
+        "last_scanned_at": "2025-01-15T10:30:00Z",
+        "database_version": "8.23.0",
+        "workspace_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+      }
+    ],
+    "page": 1,
+    "size": 20,
+    "total": 1,
+    "pages": 1
+  }
+}
+```
+</ResponseExample>

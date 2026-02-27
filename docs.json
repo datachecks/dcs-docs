@@ -136,6 +136,29 @@
             "pages": [
               "api-reference/introduction"
             ]
+          },
+          {
+            "group": "Data Sources",
+            "pages": [
+              "api-reference/data-sources/list"
+            ]
+          },
+          {
+            "group": "Comparisons",
+            "pages": [
+              "api-reference/comparisons/create",
+              "api-reference/comparisons/execute",
+              "api-reference/comparisons/execute-multiple"
+            ]
+          },
+          {
+            "group": "Jobs",
+            "pages": [
+              "api-reference/jobs/list",
+              "api-reference/jobs/details",
+              "api-reference/jobs/diff-details",
+              "api-reference/jobs/terminate"
+            ]
           }
         ]
       }

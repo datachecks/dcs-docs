@@ -1,0 +1,37 @@
+---
+title: "Terminate Job"
+api: "POST /jobs/{celery_task_id}/terminate"
+description: "Terminate a running comparison job by its task ID."
+---
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer <api-key>`
+</ParamField>
+
+<ParamField header="Workspace-Id" type="string" required>
+  Your workspace UUID.
+</ParamField>
+
+<ParamField path="celery_task_id" type="string" required>
+  The Celery task ID of the running job to terminate. Returned by [Execute Comparison](/api-reference/comparisons/execute) as `celery_task_id`.
+</ParamField>
+
+## Response
+
+<ResponseField name="message" type="string">Confirmation message indicating the job was terminated.</ResponseField>
+
+<RequestExample>
+```bash
+curl -X POST "https://api.datachecks.io/jobs/7f3a1b2c-4d5e-6f7a-8b9c-0d1e2f3a4b5c/terminate" \
+  -H "Authorization: Bearer <api-key>" \
+  -H "Workspace-Id: <workspace-id>"
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "message": "Job terminated successfully"
+}
+```
+</ResponseExample>

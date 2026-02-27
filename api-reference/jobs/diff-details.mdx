@@ -1,0 +1,82 @@
+---
+title: "Get Diff Details"
+api: "GET /jobs/comparison/{job_id}/diff-details"
+description: "Get the full row-level diff for a completed comparison job."
+---
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token. Format: `Bearer <api-key>`
+</ParamField>
+
+<ParamField header="Workspace-Id" type="string" required>
+  Your workspace UUID.
+</ParamField>
+
+<ParamField path="job_id" type="integer" required>
+  The job ID of the completed comparison run.
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Full diff details for the comparison job.
+
+  <Expandable title="data">
+    <ResponseField name="primary_key_columns" type="array">
+      List of primary key column names used to match rows.
+    </ResponseField>
+    <ResponseField name="column_mapping" type="object">
+      Map of source column names to target column names.
+    </ResponseField>
+    <ResponseField name="mismatched_columns_mapping" type="object">
+      Per-column summary of mismatches. Keys are column names, values contain mismatch counts and details.
+    </ResponseField>
+    <ResponseField name="diff_rows" type="array">
+      List of rows with differences. Each entry contains the primary key values and the differing column values from source and target.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="meta" type="object">Additional metadata.</ResponseField>
+
+<RequestExample>
+```bash
+curl -X GET "https://api.datachecks.io/jobs/comparison/1042/diff-details" \
+  -H "Authorization: Bearer <api-key>" \
+  -H "Workspace-Id: <workspace-id>"
+```
+</RequestExample>
+
+<ResponseExample>
+```json 200
+{
+  "data": {
+    "primary_key_columns": ["order_id"],
+    "column_mapping": {
+      "order_id": "order_id",
+      "customer_id": "customer_id",
+      "total": "total"
+    },
+    "mismatched_columns_mapping": {
+      "total": {
+        "mismatch_count": 3,
+        "details": "Numeric value differences"
+      }
+    },
+    "diff_rows": [
+      {
+        "order_id": 10045,
+        "source_total": 199.99,
+        "target_total": 200.00
+      },
+      {
+        "order_id": 10078,
+        "source_total": 49.95,
+        "target_total": 49.00
+      }
+    ]
+  },
+  "meta": {}
+}
+```
+</ResponseExample>
