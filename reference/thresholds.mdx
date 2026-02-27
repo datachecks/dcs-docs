@@ -1,6 +1,66 @@
 ---
 title: Thresholds
-description: Configure thresholds that trigger alerts when validations detect violations.
+description: Configure auto or constant thresholds to trigger alerts when a validation metric crosses a boundary.
 ---
 
-<Note>This page is coming soon.</Note>
+Thresholds define when a validation result becomes an incident. Datachecks supports two types: **Auto** and **Constant**.
+
+| | Auto | Constant |
+|-|------|----------|
+| **Setup** | Automatic | Manual |
+| **Adapts over time** | Yes | No |
+| **Best for** | Dynamic data with natural fluctuations | Fixed compliance or operational standards |
+
+## Auto thresholds
+
+Auto thresholds use a machine-learning engine to establish baselines from your historical data. The system analyzes patterns — including seasonality and trends — and continuously updates its expected ranges as new data arrives.
+
+**How it works:**
+
+1. Datachecks runs preliminary statistical tests to understand the shape of your data series.
+2. It learns the expected range based on historical values and the parameters you define.
+3. Bounds are periodically refreshed to stay accurate as your data evolves.
+4. When a new metric value falls outside the learned bounds, an incident is created.
+
+Auto thresholds require no manual configuration and adapt automatically to changes in your data over time.
+
+## Constant thresholds
+
+Constant thresholds set a fixed boundary using a comparison operator and a value. An incident is triggered whenever the metric crosses that boundary.
+
+**Syntax**
+
+```
+threshold: "<operator> <value>"
+```
+
+**Supported operators**
+
+| Operator | Meaning |
+|----------|---------|
+| `>` | Greater than |
+| `>=` | Greater than or equal to |
+| `<` | Less than |
+| `<=` | Less than or equal to |
+| `=` | Equal to |
+
+**Examples**
+
+```yaml
+# Alert when row count exceeds 30
+threshold: "> 30"
+
+# Alert when null percentage is 5% or more
+threshold: ">= 5"
+
+# Alert when freshness exceeds 24 hours (86400 seconds)
+threshold: "> 86400"
+
+# Alert when any duplicates exist
+threshold: "> 0"
+
+# Alert when row count between two sources differs
+threshold: "< 1"
+```
+
+Constant thresholds are well-suited to metrics with predictable, well-understood boundaries. They do not adapt to fluctuations in your data over time.
