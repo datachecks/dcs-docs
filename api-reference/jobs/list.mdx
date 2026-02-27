@@ -87,6 +87,7 @@ description: "List comparison jobs in the workspace with optional status, datase
 </ResponseField>
 
 <RequestExample>
+<CodeGroup>
 ```bash cURL
 curl -X GET "https://api.datachecks.io/jobs/comparison?page=1&size=20&status_filters=FAILURE" \
   -H "Authorization: Bearer <api-key>" \
@@ -125,6 +126,7 @@ const response = await fetch(
 const data = await response.json();
 console.log(data);
 ```
+</CodeGroup>
 </RequestExample>
 
 <ResponseExample>

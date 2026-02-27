@@ -37,6 +37,7 @@ description: "Execute a batch of comparisons as part of an agent run."
 </ResponseField>
 
 <RequestExample>
+<CodeGroup>
 ```bash cURL
 curl -X POST "https://api.datachecks.io/comparisons/execute_multiple" \
   -H "Authorization: Bearer <api-key>" \
@@ -137,6 +138,7 @@ const response = await fetch(
 const data = await response.json();
 console.log(data);
 ```
+</CodeGroup>
 </RequestExample>
 
 <ResponseExample>

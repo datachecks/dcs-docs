@@ -43,6 +43,7 @@ description: "Submit a comparison for execution. Returns a job ID you can use to
 <ResponseField name="celery_task_id" type="string">The background task ID assigned to this execution.</ResponseField>
 
 <RequestExample>
+<CodeGroup>
 ```bash cURL
 curl -X POST "https://api.datachecks.io/comparisons/eeeeeeee-0000-0000-0000-000000000005/execute" \
   -H "Authorization: Bearer <api-key>" \
@@ -78,6 +79,7 @@ const response = await fetch(
 const data = await response.json();
 console.log(data);
 ```
+</CodeGroup>
 </RequestExample>
 
 <ResponseExample>

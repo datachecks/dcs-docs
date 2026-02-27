@@ -44,6 +44,7 @@ description: "Retrieve details for a list of comparison jobs by their job IDs."
 <ResponseField name="meta" type="object">Additional metadata.</ResponseField>
 
 <RequestExample>
+<CodeGroup>
 ```bash cURL
 curl -X POST "https://api.datachecks.io/jobs/comparison/details" \
   -H "Authorization: Bearer <api-key>" \
@@ -81,6 +82,7 @@ const response = await fetch(
 const data = await response.json();
 console.log(data);
 ```
+</CodeGroup>
 </RequestExample>
 
 <ResponseExample>
