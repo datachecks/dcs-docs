@@ -1,6 +1,31 @@
 ---
 title: Email Notifications
-description: Configure email as a notification channel for alerts.
+description: Configure SMTP email as a notification channel for validation alerts.
 ---
 
-<Note>This page is coming soon.</Note>
+Send validation alerts to your team via email by configuring an SMTP notification channel.
+
+## Prerequisites
+
+- Valid SMTP server credentials (server address, port, username, password)
+- A sender email address
+- One or more recipient email addresses
+
+## Configure the channel
+
+1. Go to **Settings → Your Workspace**.
+2. Click **New Notification Channel** and select **Email**.
+3. Fill in the SMTP configuration form:
+
+| Field | Description |
+|-------|-------------|
+| **Channel Name** | A label to identify this channel in Datachecks. |
+| **Email** | The sender email address used to dispatch alerts. |
+| **Password** | Authentication password for the SMTP account. |
+| **SMTP Server** | Your SMTP server address (e.g. `smtp.gmail.com`). |
+| **Port** | SMTP port — typically `587` for TLS or `465` for SSL. |
+| **Recipients Email** | One or more recipient addresses to receive alerts. |
+
+4. Click **Connect** to save and enable the channel.
+
+The channel is now active. You can assign it to alerts from the Alerts configuration page.

@@ -1,6 +1,26 @@
 ---
 title: Microsoft Teams Notifications
-description: Configure Microsoft Teams as a notification channel for alerts.
+description: Configure Microsoft Teams as a notification channel to send validation alerts via webhook.
 ---
 
-<Note>This page is coming soon.</Note>
+Send validation alerts to a Microsoft Teams channel using an incoming webhook.
+
+## Prerequisites
+
+- A Microsoft Teams workspace with permission to add incoming webhooks
+- An incoming webhook URL for the target Teams channel — see [Microsoft's documentation](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook) for setup instructions
+
+## Configure the channel
+
+1. Go to **Settings → Your Workspace**.
+2. Click **New Notification Channel** and select **Teams**.
+3. Fill in the configuration form:
+
+| Field | Description |
+|-------|-------------|
+| **Channel Name** | A label to identify this channel in Datachecks. |
+| **Webhook URL** | The incoming webhook URL from Microsoft Teams. |
+
+4. Click **Connect** to save and enable the channel.
+
+The channel is now active. You can assign it to alerts from the Alerts configuration page.

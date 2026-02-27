@@ -1,6 +1,28 @@
 ---
 title: Slack Notifications
-description: Configure Slack as a notification channel for alerts.
+description: Configure Slack as a notification channel to send validation alerts to your team.
 ---
 
-<Note>This page is coming soon.</Note>
+Send validation alerts directly to Slack channels by connecting a Slack bot to Datachecks.
+
+## Prerequisites
+
+- A Slack Bot Token from the [Slack API platform](https://api.slack.com/apps)
+- The name or ID of the Slack channel where alerts should be posted
+- Permissions to install apps in your Slack workspace
+
+## Configure the channel
+
+1. Go to **Settings → Your Workspace**.
+2. Click **New Notification Channel** and select **Slack**.
+3. Fill in the configuration form:
+
+| Field | Description |
+|-------|-------------|
+| **Channel Name** | A label to identify this channel in Datachecks. |
+| **Bot Token** | The Slack Bot Token used to authenticate with the Slack API. |
+| **Slack Channels** | The Slack channel name (e.g. `#alerts`) or channel ID where alerts will be posted. You can add multiple channels. |
+
+4. Click **Connect** to save and enable the channel.
+
+The channel is now active. You can assign it to alerts from the Alerts configuration page.
