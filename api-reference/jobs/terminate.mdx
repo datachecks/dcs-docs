@@ -21,7 +21,6 @@ description: "Terminate a running comparison job by its task ID."
 <ResponseField name="message" type="string">Confirmation message indicating the job was terminated.</ResponseField>
 
 <RequestExample>
-<CodeGroup>
 ```bash cURL
 curl -X POST "https://api.datachecks.io/jobs/7f3a1b2c-4d5e-6f7a-8b9c-0d1e2f3a4b5c/terminate" \
   -H "Authorization: Bearer <api-key>" \
@@ -57,7 +56,6 @@ const response = await fetch(
 const data = await response.json();
 console.log(data);
 ```
-</CodeGroup>
 </RequestExample>
 
 <ResponseExample>

@@ -95,7 +95,6 @@ description: "Create a new comparison between a source and target dataset."
 <ResponseField name="message" type="string">Status message.</ResponseField>
 
 <RequestExample>
-<CodeGroup>
 ```bash cURL
 curl -X POST "https://api.datachecks.io/comparisons" \
   -H "Authorization: Bearer <api-key>" \
@@ -169,7 +168,6 @@ const response = await fetch("https://api.datachecks.io/comparisons", {
 const data = await response.json();
 console.log(data);
 ```
-</CodeGroup>
 </RequestExample>
 
 <ResponseExample>

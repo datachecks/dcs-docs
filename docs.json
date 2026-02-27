@@ -178,6 +178,12 @@
       ]
     }
   },
+  "api": {
+    "baseUrl": "https://api.datachecks.io",
+    "auth": {
+      "method": "bearer"
+    }
+  },
   "logo": {
     "light": "/logo/dcs_full_white.svg",
     "dark": "/logo/dcs_full_white.svg"
