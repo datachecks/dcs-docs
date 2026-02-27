@@ -179,7 +179,6 @@
     }
   },
   "api": {
-    "baseUrl": "https://api.datachecks.io",
     "auth": {
       "method": "bearer"
     }

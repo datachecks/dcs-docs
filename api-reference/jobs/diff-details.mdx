@@ -40,8 +40,8 @@ description: "Get the full row-level diff for a completed comparison job."
 <ResponseField name="meta" type="object">Additional metadata.</ResponseField>
 
 <RequestExample>
-```bash cURL
-curl -X GET "https://api.datachecks.io/jobs/comparison/1042/diff-details" \
+```curl cURL
+curl -X GET "https://YOUR_BASE_URL/jobs/comparison/1042/diff-details" \
   -H "Authorization: Bearer <api-key>" \
   -H "Workspace-Id: <workspace-id>"
 ```
@@ -50,7 +50,7 @@ curl -X GET "https://api.datachecks.io/jobs/comparison/1042/diff-details" \
 import requests
 
 job_id = 1042
-url = f"https://api.datachecks.io/jobs/comparison/{job_id}/diff-details"
+url = f"https://YOUR_BASE_URL/jobs/comparison/{job_id}/diff-details"
 headers = {
     "Authorization": "Bearer <api-key>",
     "Workspace-Id": "<workspace-id>",
@@ -63,7 +63,7 @@ print(response.json())
 ```javascript JavaScript
 const jobId = 1042;
 const response = await fetch(
-  `https://api.datachecks.io/jobs/comparison/${jobId}/diff-details`,
+  `https://YOUR_BASE_URL/jobs/comparison/${jobId}/diff-details`,
   {
     method: "GET",
     headers: {

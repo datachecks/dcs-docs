@@ -21,8 +21,8 @@ description: "Terminate a running comparison job by its task ID."
 <ResponseField name="message" type="string">Confirmation message indicating the job was terminated.</ResponseField>
 
 <RequestExample>
-```bash cURL
-curl -X POST "https://api.datachecks.io/jobs/7f3a1b2c-4d5e-6f7a-8b9c-0d1e2f3a4b5c/terminate" \
+```curl cURL
+curl -X POST "https://YOUR_BASE_URL/jobs/7f3a1b2c-4d5e-6f7a-8b9c-0d1e2f3a4b5c/terminate" \
   -H "Authorization: Bearer <api-key>" \
   -H "Workspace-Id: <workspace-id>"
 ```
@@ -31,7 +31,7 @@ curl -X POST "https://api.datachecks.io/jobs/7f3a1b2c-4d5e-6f7a-8b9c-0d1e2f3a4b5
 import requests
 
 task_id = "7f3a1b2c-4d5e-6f7a-8b9c-0d1e2f3a4b5c"
-url = f"https://api.datachecks.io/jobs/{task_id}/terminate"
+url = f"https://YOUR_BASE_URL/jobs/{task_id}/terminate"
 headers = {
     "Authorization": "Bearer <api-key>",
     "Workspace-Id": "<workspace-id>",
@@ -44,7 +44,7 @@ print(response.json())
 ```javascript JavaScript
 const taskId = "7f3a1b2c-4d5e-6f7a-8b9c-0d1e2f3a4b5c";
 const response = await fetch(
-  `https://api.datachecks.io/jobs/${taskId}/terminate`,
+  `https://YOUR_BASE_URL/jobs/${taskId}/terminate`,
   {
     method: "POST",
     headers: {
