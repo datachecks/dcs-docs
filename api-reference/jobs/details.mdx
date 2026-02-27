@@ -44,7 +44,7 @@ description: "Retrieve details for a list of comparison jobs by their job IDs."
 <ResponseField name="meta" type="object">Additional metadata.</ResponseField>
 
 <RequestExample>
-```bash
+```bash cURL
 curl -X POST "https://api.datachecks.io/jobs/comparison/details" \
   -H "Authorization: Bearer <api-key>" \
   -H "Workspace-Id: <workspace-id>" \
@@ -52,7 +52,7 @@ curl -X POST "https://api.datachecks.io/jobs/comparison/details" \
   -d '[1042, 1043]'
 ```
 
-```python
+```python Python
 import requests
 
 url = "https://api.datachecks.io/jobs/comparison/details"
@@ -65,7 +65,7 @@ response = requests.post(url, json=[1042, 1043], headers=headers)
 print(response.json())
 ```
 
-```javascript
+```javascript JavaScript
 const response = await fetch(
   "https://api.datachecks.io/jobs/comparison/details",
   {

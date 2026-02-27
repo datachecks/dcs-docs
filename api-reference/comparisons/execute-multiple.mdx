@@ -37,7 +37,7 @@ description: "Execute a batch of comparisons as part of an agent run."
 </ResponseField>
 
 <RequestExample>
-```bash
+```bash cURL
 curl -X POST "https://api.datachecks.io/comparisons/execute_multiple" \
   -H "Authorization: Bearer <api-key>" \
   -H "Workspace-Id: <workspace-id>" \
@@ -65,7 +65,7 @@ curl -X POST "https://api.datachecks.io/comparisons/execute_multiple" \
   }'
 ```
 
-```python
+```python Python
 import requests
 
 url = "https://api.datachecks.io/comparisons/execute_multiple"
@@ -99,7 +99,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.json())
 ```
 
-```javascript
+```javascript JavaScript
 const payload = {
   agent_run_id: "aaaaaaaa-1111-2222-3333-444444444444",
   comparison_agent_configs: [

@@ -95,7 +95,7 @@ description: "Create a new comparison between a source and target dataset."
 <ResponseField name="message" type="string">Status message.</ResponseField>
 
 <RequestExample>
-```bash
+```bash cURL
 curl -X POST "https://api.datachecks.io/comparisons" \
   -H "Authorization: Bearer <api-key>" \
   -H "Workspace-Id: <workspace-id>" \
@@ -115,7 +115,7 @@ curl -X POST "https://api.datachecks.io/comparisons" \
   }'
 ```
 
-```python
+```python Python
 import requests
 
 url = "https://api.datachecks.io/comparisons"
@@ -141,7 +141,7 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.json())
 ```
 
-```javascript
+```javascript JavaScript
 const payload = {
   name: "orders table comparison",
   source_datasource_id: "aaaaaaaa-0000-0000-0000-000000000001",

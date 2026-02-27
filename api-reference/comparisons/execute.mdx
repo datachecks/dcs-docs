@@ -43,13 +43,13 @@ description: "Submit a comparison for execution. Returns a job ID you can use to
 <ResponseField name="celery_task_id" type="string">The background task ID assigned to this execution.</ResponseField>
 
 <RequestExample>
-```bash
+```bash cURL
 curl -X POST "https://api.datachecks.io/comparisons/eeeeeeee-0000-0000-0000-000000000005/execute" \
   -H "Authorization: Bearer <api-key>" \
   -H "Workspace-Id: <workspace-id>"
 ```
 
-```python
+```python Python
 import requests
 
 comparison_id = "eeeeeeee-0000-0000-0000-000000000005"
@@ -63,7 +63,7 @@ response = requests.post(url, headers=headers)
 print(response.json())
 ```
 
-```javascript
+```javascript JavaScript
 const comparisonId = "eeeeeeee-0000-0000-0000-000000000005";
 const response = await fetch(
   `https://api.datachecks.io/comparisons/${comparisonId}/execute`,
