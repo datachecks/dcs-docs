@@ -1,6 +1,51 @@
 ---
 title: Windows
-description: Define time windows for delta and trending validations.
+description: Configure global or tumbling time windows to control how validation metrics are calculated.
 ---
 
-<Note>This page is coming soon.</Note>
+Windows determine the scope of data that a validation runs against. Datachecks supports two window types: **Global** and **Tumbling**.
+
+## Global windows
+
+A global window runs the validation against the entire dataset on every execution. There is no time-based partitioning — every row in the table is included each time.
+
+**Best for:** Small tables, or when you need a full-dataset view every run.
+
+**Trade-offs:** On large tables, global windows perform a full data load on every polling cycle, which can cause performance degradation and high resource consumption.
+
+No additional configuration is required for global windows.
+
+---
+
+## Tumbling windows
+
+A tumbling window divides data into fixed, non-overlapping time segments based on a timestamp column. Each segment is validated independently, making it easier to identify issues in a specific batch or time period.
+
+**Best for:** Large tables, continuous monitoring of recent data, identifying temporal anomalies, and batch-specific quality checks.
+
+### Configuration parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| **Date-Time Field** | The timestamp column used to partition data into segments (e.g. `created_at`, `event_time`). |
+| **Window Size** | The length of each time segment, combined with Window Unit (e.g. `2` days). |
+| **Window Unit** | Unit for Window Size — `hours`, `days`, or `weeks`. |
+| **Look Back Period** | How far back in time to retrieve data, combined with Look Back Unit (e.g. `5` days). |
+| **Look Back Unit** | Unit for Look Back Period — `hours`, `days`, or `weeks`. |
+
+### How it works
+
+Given a Look Back Period of 10 days and a Window Size of 2 days, Datachecks creates 5 non-overlapping windows. Each window is validated independently. Only the data within the Look Back Period is considered — older records are excluded.
+
+**Example:**
+
+```
+Look Back Period: 10 days
+Window Size: 2 days
+
+→ Window 1: days 1–2
+→ Window 2: days 3–4
+→ Window 3: days 5–6
+→ Window 4: days 7–8
+→ Window 5: days 9–10
+```

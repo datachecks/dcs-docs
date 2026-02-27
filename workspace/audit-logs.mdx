@@ -1,0 +1,40 @@
+---
+title: Audit Logs
+description: Track all user activity in your workspace for security, compliance, and troubleshooting.
+---
+
+Audit Logs provide a chronological record of every action taken in your workspace. Administrators can use them to monitor user behavior, investigate incidents, and meet compliance requirements.
+
+Navigate to **Settings → Audit Logs** to access the log viewer.
+
+## Log table columns
+
+| Column | Description |
+|--------|-------------|
+| **Activity** | The type of action performed (e.g. datasource created, validation run). |
+| **Status** | Outcome of the action — `Success` or `Error`. |
+| **User** | Username and email of the person who performed the action. |
+| **User Agent** | The operating system or platform the action originated from (Windows, macOS, Linux). |
+| **IP Address** | The IP address the request came from. |
+| **Workspace** | The workspace where the activity occurred. |
+| **Created At** | Timestamp of the action. |
+| **Response Time** | How long the operation took to complete, in milliseconds. |
+
+## Filters
+
+Narrow down the log using any combination of the following filters:
+
+| Filter | Options |
+|--------|---------|
+| **Status** | `Success`, `Error` |
+| **Activity Type** | Select a specific action type |
+| **HTTP Method** | `GET`, `POST`, `PUT`, `DELETE`, `PATCH` |
+| **Workspace** | Filter to a specific workspace (in multi-workspace environments) |
+| **User** | Filter by a specific user, showing their role and active/disabled status |
+| **Time Range** | Today, Yesterday, Last Week, Last Month, Last Quarter, or a custom date range |
+
+Click **Reset** to clear all active filters.
+
+## Export
+
+Click the **Download** button in the top-right corner to export the currently visible audit logs for offline analysis.

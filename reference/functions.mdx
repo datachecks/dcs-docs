@@ -1,6 +1,102 @@
 ---
-title: Functions
-description: Built-in functions available in custom SQL validations and comparisons.
+title: Test Data Generation Functions
+description: Reference for all synthetic data generation functions available in Datachecks test data.
 ---
 
-<Note>This page is coming soon.</Note>
+Datachecks provides a library of functions for generating realistic synthetic data. Use these functions when configuring test data generation for your datasets.
+
+## Personal
+
+| Function | Description | Example output |
+|----------|-------------|----------------|
+| `first_name` | Given name | `Emily`, `Brandon` |
+| `last_name` | Family name | `Smith`, `Johnson` |
+| `name` | Full name | `Emily Johnson` |
+| `prefix` | Name title | `Mr.`, `Dr.` |
+| `suffix` | Name suffix | `Jr.`, `Ph.D.` |
+| `gender` | Gender value | `Male`, `Female` |
+| `birth_date` | Date of birth. Accepts `minimum_age` and `maximum_age` parameters. | `1990-04-12` |
+| `age` | Numeric age | `34` |
+| `phone_number` | Phone number. Accepts optional `country_code` parameter. | `+1-555-867-5309` |
+| `pan_id` | Permanent Account Number (India) | `ABCDE1234F` |
+| `aadhaar_id` | Aadhaar identity number (India) | `2345 6789 0123` |
+| `uae_id` | United Arab Emirates identity number | — |
+| `sbn9` | 9-digit unique identifier | `123456789` |
+
+## Address
+
+| Function | Description | Example output |
+|----------|-------------|----------------|
+| `address` | Full address | `123 Main St, Springfield, US` |
+| `building_number` | Building number | `42` |
+| `street_address` | Street-level address | `742 Evergreen Terrace` |
+| `city` | City name | `Springfield` |
+| `state` | State or province | `California` |
+| `postcode` | ZIP or postal code | `90210` |
+| `country` | Country name | `United States` |
+| `country_code` | ISO country code | `US`, `CA` |
+| `latitude` | Latitude coordinate | `37.7749` |
+| `longitude` | Longitude coordinate | `-122.4194` |
+| `geo_coordinate` | Combined latitude/longitude pair | `37.7749, -122.4194` |
+
+## Currency
+
+| Function | Description | Example output |
+|----------|-------------|----------------|
+| `currency_code` | ISO currency code | `USD`, `EUR` |
+| `currency_name` | Full currency name | `United States Dollar` |
+| `currency_symbol` | Currency symbol | `$`, `€` |
+| `cryptocurrency_code` | Crypto asset code | `BTC`, `ETH` |
+| `cryptocurrency_name` | Full crypto name | `Bitcoin`, `Ethereum` |
+
+## Finance
+
+| Function | Description | Example output |
+|----------|-------------|----------------|
+| `iban` | International Bank Account Number | `GB29NWBK60161331926819` |
+| `credit_card_number` | Payment card number | `4111111111111111` |
+| `credit_card_expire` | Card expiration date | `12/25` |
+| `credit_card_provider` | Card brand | `Visa`, `MasterCard` |
+| `price` | Currency-formatted amount | `$12.34`, `€56.78` |
+
+## Company
+
+| Function | Description | Example output |
+|----------|-------------|----------------|
+| `company` | Organisation name | `Acme Corporation` |
+| `company_suffix` | Legal designator | `Inc.`, `LLC` |
+| `catch_phrase` | Marketing phrase | `Seamless end-to-end solutions` |
+| `bs` | Business buzzwords | `synergize scalable architectures` |
+| `ein` | Employer Identification Number | `12-3456789` |
+| `job_title` | Professional role | `Software Engineer` |
+
+## Time
+
+| Function | Description | Example output |
+|----------|-------------|----------------|
+| `date_time` | ISO datetime | `2023-11-25T14:35:20` |
+| `iso8601` | ISO 8601 datetime with timezone | `2023-11-25T14:35:20Z` |
+| `date_time_this_year` | Datetime within the current year | — |
+| `date_time_this_month` | Datetime within the current month | — |
+| `year` | Numeric year | `2023` |
+| `month` | Month name | `January` |
+| `day_of_week` | Weekday name | `Monday` |
+| `timezone` | Timezone identifier | `UTC`, `America/New_York` |
+
+## Identifiers
+
+| Function | Description | Example output |
+|----------|-------------|----------------|
+| `uuid4` | UUID v4 | `550e8400-e29b-41d4-a716-446655440000` |
+| `ean` | European Article Number | `4006381333931` |
+| `isbn10` | 10-digit ISBN | `0-306-40615-2` |
+| `isbn13` | 13-digit ISBN | `978-3-16-148410-0` |
+| `swift` | SWIFT/BIC banking code | `NWBKGB22` |
+
+## Internet
+
+| Function | Description | Example output |
+|----------|-------------|----------------|
+| `url` | Website URL | `https://example.com` |
+| `user_name` | Login username | `john_doe` |
+| `email` | Email address | `john.doe@example.com` |

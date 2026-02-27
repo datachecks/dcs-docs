@@ -23,7 +23,8 @@
                 "group": "Manage Your Team",
                 "pages": [
                   "workspace/workspaces",
-                  "workspace/users"
+                  "workspace/users",
+                  "workspace/audit-logs"
                 ]
               }
             ]
@@ -72,6 +73,7 @@
                 "group": "Assets",
                 "pages": [
                   "assets/overview",
+                  "assets/dataset-discovery",
                   "assets/profiling"
                 ]
               },

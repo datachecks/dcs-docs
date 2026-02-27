@@ -1,6 +1,86 @@
 ---
 title: Jobs
-description: Reference for job statuses, types, and lifecycle in Datachecks.
+description: Monitor and manage comparison and validation job executions across your workspace.
 ---
 
-<Note>This page is coming soon.</Note>
+The Jobs page is a centralized activity log for all validation and comparison executions in your workspace. Navigate to **Jobs** in the left sidebar to view run history, inspect errors, and manage in-progress jobs.
+
+## Comparison jobs
+
+Comparison jobs evaluate differences between two datasets — for example, production vs. staging. They are used for pre-deployment checks, regression detection, and cross-environment consistency validation.
+
+### Columns
+
+| Column | Description |
+|--------|-------------|
+| **Run ID** | Unique identifier for the job run. |
+| **Status** | Current state of the job. |
+| **Comparison Name** | The name of the comparison that was run. |
+| **Source Dataset** | Name of the source dataset. |
+| **Target Dataset** | Name of the target dataset. |
+| **Time Taken** | Duration of the run. |
+| **Created At** | Timestamp when the job was created. |
+
+### Statuses
+
+| Status | Description |
+|--------|-------------|
+| `PENDING` | Job is queued and waiting to start. |
+| `RUNNING` | Job is currently executing. |
+| `SUCCESS` | Job completed successfully. |
+| `FAILURE` | Job encountered an error. |
+| `REVOKED` | Job was cancelled before completion. |
+
+### Actions
+
+Click the **⋯** menu on any comparison job row to:
+
+- **Info** — View a summary of the comparison including metadata and execution time.
+- **Stats** — View query performance metrics: total time, min/max/average latency, and P90 for source and target.
+- **Clone** — Duplicate the job configuration to create a similar run.
+- **Revoke** — Cancel a job that is pending or currently running.
+
+---
+
+## Validation jobs
+
+Validation jobs run data quality checks within a single dataset. Each row captures the outcome of a group of validation checks.
+
+### Columns
+
+| Column | Description |
+|--------|-------------|
+| **Run ID** | Unique identifier for the job group. |
+| **No. of Validations** | Total number of checks performed in the run. |
+| **Status** | Current state of the job. |
+| **Time Taken** | Duration of the run. |
+| **Started At** | Timestamp when the job started executing. |
+| **Created At** | Timestamp when the job was triggered. |
+
+### Statuses
+
+| Status | Description |
+|--------|-------------|
+| `PENDING` | Job is queued and waiting to start. |
+| `SUCCESS` | All validations completed successfully. |
+| `FAILURE` | One or more validations failed. |
+| `REVOKED` | Job was cancelled before completion. |
+
+### Actions
+
+Click the **⋯** menu on any validation job row to **Revoke** a pending or running job.
+
+---
+
+## Filters
+
+Both comparison and validation job lists support the following filters:
+
+- **Status** — Filter by `PENDING`, `RUNNING`, `SUCCESS`, `FAILURE`, or `REVOKED`
+- **Time range** — Choose from Today, Yesterday, Last Week, Last Month, Last Quarter, or a custom date range
+
+Click **Reset** to clear all filters.
+
+## Error details
+
+When a job fails, click the expand icon on the row to view the full error message and failure details.

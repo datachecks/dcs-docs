@@ -1,0 +1,31 @@
+---
+title: Dataset Discovery
+description: Control which tables are included or excluded when Datachecks scans a connected data source.
+---
+
+When you connect a data source, Datachecks automatically scans for databases and tables to monitor. Dataset Discovery lets you control exactly which tables are included using inclusion and exclusion patterns.
+
+## Inclusion and exclusion lists
+
+You can configure two lists for each data source:
+
+- **Table Inclusion List** — Only tables matching these patterns are profiled and monitored.
+- **Table Exclusion List** — Tables matching these patterns are ignored.
+
+**Inclusion takes precedence.** If a table matches both lists, it is included.
+
+## Pattern matching
+
+Patterns support wildcards for flexible matching:
+
+| Pattern | Matches | Example |
+|---------|---------|---------|
+| `%` | Any sequence of characters | `%user` matches `admin_user`, `active_user` |
+| `_` | Exactly one character | `customer__` matches `customer01`, `customerAB` |
+| `*` | Zero or more characters | `user*data` matches `user_metadata`, `user_salesdata` |
+| `\` | Escape a wildcard to match it literally | `north\_%` matches `north_star`, `north_end` |
+| Exact name | Only that specific table | `retailorders` matches only `retailorders` |
+
+## View scanning
+
+When setting up a data source, you can enable or disable **view scanning** to control whether database views are included during discovery and profiling.
