@@ -1,0 +1,42 @@
+---
+title: Validation Details
+description: Inspect metric history, incidents, and run results for an individual validation.
+---
+
+Click any validation in the list to open its detail view. This shows the full metric history and a log of every validation run.
+
+## Metrics graph
+
+The metrics graph plots the validation's measured values over time. Each data point shows:
+
+- **Value** — The metric recorded for that run
+- **Bounds** — Upper and lower threshold limits (if configured)
+- **Severity** — How far the value deviated from the expected range
+- **Detected at** — Timestamp of the run
+
+Hover over any data point to see the details for that specific run.
+
+## Incidents list
+
+Below the graph, the incidents table shows every validation run with the following columns:
+
+| Column | Description |
+|--------|-------------|
+| **Run ID** | Unique identifier for the validation run. |
+| **Value** | The metric value recorded during the run. |
+| **Status** | Outcome — `Healthy`, `Alerting`, or `Failed`. |
+| **Run at** | Timestamp when the validation executed. |
+| **Reason** | Explanation of the failure or alert, if applicable. |
+
+## Filters
+
+Use the timeframe filter to focus the graph and incidents list on a specific date range.
+
+## Actions
+
+From the detail view you can:
+
+- **Run** — Execute the validation immediately
+- **Pause** — Suspend scheduled execution
+- **Edit** — Modify the validation configuration
+- **Delete** — Remove the validation

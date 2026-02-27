@@ -79,8 +79,9 @@
                 "group": "Validation",
                 "pages": [
                   "validation/overview",
-                  "validation/validation-types",
-                  "validation/configure"
+                  "validation/details",
+                  "validation/configure",
+                  "validation/validation-types"
                 ]
               },
               {

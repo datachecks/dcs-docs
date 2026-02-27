@@ -1,6 +1,52 @@
 ---
 title: Configure Validations
-description: How to configure, enable, and manage validations on your assets.
+description: Step-by-step guide to creating and configuring a validation on a dataset.
 ---
 
-<Note>This page is coming soon.</Note>
+Follow these steps to create a new validation on a dataset.
+
+## Steps
+
+### 1. Open the creation form
+
+Navigate to **Validations** in the left sidebar and click **New Validation**.
+
+### 2. Select a validation type
+
+Choose the type of check you want to run. Available types include:
+
+- **Completeness** — Check for missing or null values
+- **Uniqueness** — Detect duplicate entries
+- **Validity** — Validate values against a format or list
+- **Reliability** — Check row counts and freshness
+- **Numeric Distribution** — Track statistical metrics (mean, median, percentiles)
+- **Custom SQL** — Write a custom SQL expression to measure any metric
+- **Delta Validation** — Compare metric values between runs
+
+See [Validation Types](/validation/validation-types) for a full description of each.
+
+### 3. Select your data source and dataset
+
+Choose the **Data Source** and **Dataset** the validation will run against. Enter a name for the validation, or accept the auto-generated suggestion.
+
+### 4. Configure filters (optional)
+
+Apply a filter condition to restrict which rows are included in the metric calculation. For example, filter the `tr_volume` column to `Less Than 5000` to validate only low-volume transactions.
+
+### 5. Define the threshold
+
+Set a threshold to define what constitutes an incident. When the metric crosses this boundary, Datachecks creates an alert. See [Thresholds](/reference/thresholds) for the available threshold types.
+
+### 6. Set the schedule
+
+Choose how often the validation should run — hourly, daily, weekly, or a custom cron expression.
+
+### 7. Create
+
+Click **Create** to save the validation. It will appear in the validations list and run according to the schedule you set.
+
+## What's next
+
+- [View validation results](/validation/details) — Inspect the metrics graph and incidents list
+- [Validation Types](/validation/validation-types) — Learn about each check type
+- [Thresholds](/reference/thresholds) — Understand how alerting thresholds work
