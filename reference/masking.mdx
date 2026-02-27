@@ -1,6 +1,25 @@
 ---
 title: Masking
-description: Configure data masking rules for sensitive columns during comparisons and validations.
+description: Hide sensitive column values in the Datachecks UI without modifying your underlying data.
 ---
 
-<Note>This page is coming soon.</Note>
+Masking lets you conceal sensitive or personally identifiable information in the Datachecks interface. Masked values are hidden in report previews, dashboards, and comparison results — but the underlying data in your database is never modified or deleted.
+
+Masking operates at the presentation layer only. Metadata-level monitoring (row counts, null rates, validation metrics) continues to work normally on masked columns.
+
+## When to use masking
+
+Masking is useful in collaborative environments where visibility must be restricted for compliance, auditing, or data governance purposes. Common use cases include:
+
+- Customer names and contact details
+- Account numbers
+- Financial figures
+- Any column containing confidential or regulated information
+
+## How it works
+
+When a column is masked:
+
+1. The column's values are hidden in the Datachecks UI — report previews and dashboard views show masked placeholders instead of actual values.
+2. Validations and comparisons still run against the column using the real data in your database.
+3. No data is written back to the source — masking is a display control, not a data transformation.

@@ -1,6 +1,60 @@
 ---
 title: Error Codes
-description: Reference for error codes returned by the Datachecks API.
+description: Reference for all error codes returned by the Datachecks platform.
 ---
 
-<Note>This page is coming soon.</Note>
+Error codes follow the format `DCS-<component>-<category>-<number>`. Each code is accompanied by a short name and a human-readable message.
+
+## SDK user errors
+
+Errors caused by invalid configuration or input provided to the SDK.
+
+| Code | Name | Message |
+|------|------|---------|
+| `DCS-SDK-USER-001` | `SDK_SOURCE_TARGET_MISSING` | Source or target columns are missing. |
+| `DCS-SDK-USER-002` | `SDK_UNSUPPORTED_PK` | Unsupported primary key. |
+| `DCS-SDK-USER-003` | `SDK_COLUMN_NOT_FOUND` | Column not found in source or target. |
+| `DCS-SDK-USER-004` | `SDK_INVALID_FILTER` | Invalid filter query provided. |
+| `DCS-SDK-USER-005` | `SDK_INVALID_TRANSFORMATION` | Invalid transformation rule. |
+| `DCS-SDK-USER-006` | `SDK_TRIM_INT` | Cannot apply trim on integer columns. |
+| `DCS-SDK-USER-007` | `DB_CREDENTIAL_ERROR` | Authentication failed. Please check your credentials. |
+
+## SDK extraction errors
+
+Errors encountered when the SDK attempts to connect to or read from a database.
+
+| Code | Name | Message |
+|------|------|---------|
+| `DCS-SDK-EXTR-003` | `DB_HOST_UNREACHABLE` | Database host could not be reached. |
+| `DCS-SDK-EXTR-004` | `DB_CONNECTION_TIMEOUT` | Connection to the database timed out. |
+| `DCS-SDK-EXTR-005` | `DB_DRIVER_ERROR` | Database driver configuration issue. |
+| `DCS-SDK-EXTR-006` | `DB_NOT_FOUND` | Target database does not exist. |
+| `DCS-SDK-EXTR-007` | `DB_SCHEMA_NOT_FOUND` | The specified schema could not be found. |
+| `DCS-SDK-EXTR-008` | `DB_PERMISSION_DENIED` | You don't have permission to access the resource. |
+
+## Job errors
+
+Errors that occur during job creation or execution.
+
+| Code | Name | Message |
+|------|------|---------|
+| `DCS-JOB-COMM-001` | `JOB_HTTP_ERROR` | Failed to create job due to connection error. |
+| `DCS-JOB-EXTR-001` | `JOB_DATASOURCE_ERROR` | Datasource connection error while creating job. |
+
+## Datasource errors
+
+Errors related to datasource connectivity and access.
+
+| Code | Name | Message |
+|------|------|---------|
+| `DCS-SBR-USER-001` | `DS_CREDENTIAL_ERROR` | Invalid datasource credentials. |
+| `DCS-SBR-USER-002` | `DS_PERMISSION_ERROR` | Insufficient permissions for datasource. |
+| `DCS-SBR-EXTR-001` | `DS_DB_NOT_FOUND` | Datasource database not found. |
+| `DCS-SBR-EXTR-002` | `DS_SCHEMA_NOT_FOUND` | Datasource schema not found. |
+| `DCS-SBR-EXTR-003` | `DS_HOST_RESOLVE_ERROR` | Datasource host could not be resolved. |
+
+## Generic errors
+
+| Code | Name | Message |
+|------|------|---------|
+| `DCS-COM-COMM-000` | `UNKNOWN_ERROR` | An unknown error occurred. |

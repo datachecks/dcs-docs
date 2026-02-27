@@ -3,4 +3,38 @@ title: API Keys
 description: Create and manage API keys for programmatic access to the Datachecks API.
 ---
 
-<Note>This page is coming soon.</Note>
+API keys give you secure, programmatic access to Datachecks. Use them to integrate with CI/CD pipelines, data orchestration workflows, or any external tooling that calls the Datachecks API.
+
+## Create an API key
+
+1. Go to **Settings → Tokens**.
+2. Click **Generate New Token**.
+3. Enter a descriptive name (e.g. `prod_pipeline_key`).
+4. Optionally set an **expiry date** and an **access scope**.
+5. Click **Create** and copy the generated key immediately — it will not be shown again.
+
+## Use an API key
+
+Include the key as a Bearer token in the `Authorization` header of every request:
+
+```bash
+curl -X GET https://YOUR_BASE_URL/sources \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Workspace-Id: YOUR_WORKSPACE_ID"
+```
+
+## Manage keys
+
+From **Settings → Tokens** you can:
+
+- **Disable** a key to immediately invalidate it without deleting it
+- **Enable** a previously disabled key to reactivate it
+- **Delete** a key to permanently revoke access
+
+## Security best practices
+
+- Create separate keys for development, staging, and production environments
+- Set expiration dates on keys used for temporary access
+- Rotate keys periodically
+- Revoke any key that is exposed or no longer needed
+- Store keys in a secrets manager (e.g. AWS Secrets Manager, HashiCorp Vault) rather than in source code
