@@ -1,6 +1,297 @@
 ---
 title: Validation Types
-description: Full reference for all validation types supported in Datachecks.
+description: Full reference for all validation types and their configuration functions in Datachecks.
 ---
 
-<Note>This page is coming soon.</Note>
+Datachecks supports seven validation types. Each type covers a different aspect of data quality and exposes one or more functions you reference in the `on` field when configuring a validation.
+
+| Type | What it checks |
+|------|----------------|
+| [Completeness](#completeness) | Missing values, nulls, and empty strings |
+| [Uniqueness](#uniqueness) | Duplicates and distinct counts |
+| [Validity](#validity) | Formats, patterns, value ranges, and identifier standards |
+| [Reliability](#reliability) | Row counts, freshness, and timeliness |
+| [Numeric Distribution](#numeric-distribution) | Statistical measures across numeric columns |
+| [Custom SQL](#custom-sql) | Any metric expressible as a SQL query |
+| [Delta Validation](#delta-validation) | Differences between two data sources or segments |
+
+---
+
+## Completeness
+
+Completeness validations detect missing data — null values and empty strings — in your datasets.
+
+| Function | Description |
+|----------|-------------|
+| `count_null(column)` | Count of null values in the column. |
+| `percent_null(column)` | Percentage of null values in the column. |
+| `count_empty_string(column)` | Count of empty string (`''`) values in the column. |
+| `percent_empty_string(column)` | Percentage of empty string values in the column. |
+
+**Example**
+
+```yaml
+validations for product_db.products:
+  - null_count_in_first_name:
+      on: count_null(first_name)
+      threshold: "= 0"
+```
+
+---
+
+## Uniqueness
+
+Uniqueness validations measure data distinctiveness and identify duplication within a column.
+
+| Function | Description |
+|----------|-------------|
+| `count_distinct(column)` | Count of unique values in the column. |
+| `count_duplicate(column)` | Count of duplicate values in the column. |
+
+**Example**
+
+```yaml
+validations for product_db.products:
+  - distinct_count_of_product_categories:
+      on: count_distinct(product_category)
+      threshold: "> 5"
+```
+
+---
+
+## Validity
+
+Validity validations check that values conform to expected formats, standards, or patterns.
+
+### Value-based
+
+| Function | Description |
+|----------|-------------|
+| `count_valid_values(column)` | Count of values matching the `values` list. |
+| `percent_valid_values(column)` | Percentage of values matching the `values` list. |
+| `count_invalid_values(column)` | Count of values not in the `values` list. |
+| `percent_invalid_values(column)` | Percentage of values not in the `values` list. |
+
+Use the `values` parameter to specify the accepted list:
+
+```yaml
+validations for iris_db.iris:
+  - valid_species_percentage:
+      on: percent_valid_values(species)
+      values: ["setosa", "virginica"]
+      threshold: "> 65"
+```
+
+### String format
+
+| Function | Description |
+|----------|-------------|
+| `string_length_max(column)` | Maximum string length in the column. |
+| `string_length_min(column)` | Minimum string length in the column. |
+| `string_length_average(column)` | Average string length in the column. |
+| `count_all_space(column)` | Count of values that are only whitespace. |
+| `percent_all_space(column)` | Percentage of values that are only whitespace. |
+| `count_null_keyword(column)` | Count of null-like string keywords (e.g. `"null"`, `"N/A"`). |
+| `percent_null_keyword(column)` | Percentage of null-like string keywords. |
+
+### Regex patterns
+
+| Function | Description |
+|----------|-------------|
+| `count_valid_regex(column)` | Count of values matching the `pattern`. |
+| `percent_valid_regex(column)` | Percentage of values matching the `pattern`. |
+| `count_invalid_regex(column)` | Count of values not matching the `pattern`. |
+| `percent_invalid_regex(column)` | Percentage of values not matching the `pattern`. |
+
+Use the `pattern` parameter to specify the regex:
+
+```yaml
+validations for users_db.accounts:
+  - valid_email_format:
+      on: percent_valid_regex(email)
+      pattern: "^[\\w.+-]+@[\\w-]+\\.[\\w.]+$"
+      threshold: "> 99"
+```
+
+### Contact information
+
+| Function | Description |
+|----------|-------------|
+| `count_usa_phone(column)` | Count of valid US phone numbers. |
+| `percent_usa_phone(column)` | Percentage of valid US phone numbers. |
+| `count_email(column)` | Count of valid email addresses. |
+| `percent_email(column)` | Percentage of valid email addresses. |
+
+### Identifiers
+
+| Function | Description |
+|----------|-------------|
+| `count_uuid(column)` | Count of valid UUIDs. |
+| `percent_uuid(column)` | Percentage of valid UUIDs. |
+| `count_sedol(column)` | Count of valid SEDOL codes. |
+| `percent_sedol(column)` | Percentage of valid SEDOL codes. |
+| `count_cusip(column)` | Count of valid CUSIP codes. |
+| `percent_cusip(column)` | Percentage of valid CUSIP codes. |
+| `count_lei(column)` | Count of valid LEI codes. |
+| `percent_lei(column)` | Percentage of valid LEI codes. |
+| `count_figi(column)` | Count of valid FIGI codes. |
+| `percent_figi(column)` | Percentage of valid FIGI codes. |
+| `count_isin(column)` | Count of valid ISIN codes. |
+| `percent_isin(column)` | Percentage of valid ISIN codes. |
+
+### Geolocation
+
+| Function | Description |
+|----------|-------------|
+| `count_latitude(column)` | Count of valid latitude values (−90 to 90). |
+| `percent_latitude(column)` | Percentage of valid latitude values. |
+| `count_longitude(column)` | Count of valid longitude values (−180 to 180). |
+| `percent_longitude(column)` | Percentage of valid longitude values. |
+
+### Timestamps and dates
+
+| Function | Description |
+|----------|-------------|
+| `count_timestamp_string(column)` | Count of values in valid ISO timestamp format. |
+| `percent_timestamp_string(column)` | Percentage of values in valid ISO timestamp format. |
+| `count_not_in_future(column)` | Count of timestamps that are not in the future. |
+| `percent_not_in_future(column)` | Percentage of timestamps that are not in the future. |
+| `count_date_not_in_future(column)` | Count of dates that are not in the future. |
+| `percent_date_not_in_future(column)` | Percentage of dates that are not in the future. |
+
+---
+
+## Reliability
+
+Reliability validations monitor data freshness, row counts, and update frequency to detect pipeline delays or data loss.
+
+| Function | Description |
+|----------|-------------|
+| `freshness(timestamp_column)` | Time in seconds since the most recent value in the column. Alert when stale. |
+| `count_rows` | Total row count in the table. |
+| `count_documents` | Total document count in a search index. |
+
+**Examples**
+
+```yaml
+validations for product_db.products:
+  - freshness_of_products:
+      on: freshness(updated_at)
+      threshold: "> 86400"
+
+  - product_row_count:
+      on: count_rows
+      where: "country_code = 'IN'"
+      threshold: "> 1000"
+```
+
+---
+
+## Numeric Distribution
+
+Numeric Distribution validations track statistical measures on numeric columns to detect shifts, outliers, or unexpected variance.
+
+### Central tendency
+
+| Function | Description |
+|----------|-------------|
+| `avg(column)` | Mean value. |
+| `min(column)` | Minimum value. |
+| `max(column)` | Maximum value. |
+| `sum(column)` | Sum of all values. |
+
+### Dispersion
+
+| Function | Description |
+|----------|-------------|
+| `variance(column)` | Variance from the mean. |
+| `stddev(column)` | Standard deviation. |
+
+### Percentiles
+
+| Function | Description |
+|----------|-------------|
+| `percentile(column, 20)` | 20th percentile value. |
+| `percentile(column, 40)` | 40th percentile value. |
+| `percentile(column, 60)` | 60th percentile value. |
+| `percentile(column, 80)` | 80th percentile value. |
+| `percentile(column, 90)` | 90th percentile value. |
+
+### Zero and negative values
+
+| Function | Description |
+|----------|-------------|
+| `count_zero(column)` | Count of zero values. |
+| `percent_zero(column)` | Percentage of zero values. |
+| `count_negative(column)` | Count of negative values. |
+| `percent_negative(column)` | Percentage of negative values. |
+
+**Example**
+
+```yaml
+validations for sales_db.orders:
+  - average_order_value:
+      on: avg(order_total)
+      threshold: "< 500"
+
+  - negative_amounts:
+      on: count_negative(order_total)
+      threshold: "= 0"
+```
+
+---
+
+## Custom SQL
+
+Custom SQL validations let you define any metric as a SQL `SELECT` statement that returns a single numeric value. Use this for business-specific checks that don't fit standard types.
+
+**Configuration**
+
+| Parameter | Description |
+|-----------|-------------|
+| `on` | Must be set to `custom_sql`. |
+| `query` | The SQL query. Must return a single numeric value. |
+
+**Example**
+
+```yaml
+validations for mysql_db.student:
+  - high_age_bangalore_students:
+      on: custom_sql
+      query: |
+        SELECT COUNT(*) FROM student
+        WHERE city = 'bangalore' AND age >= 30
+      threshold: "> 0"
+```
+
+Supported on all connected databases: Snowflake, BigQuery, Databricks, PostgreSQL, MySQL, Oracle, Azure SQL, and Sybase.
+
+---
+
+## Delta Validation
+
+Delta validations compare a metric between two datasets — useful for migration checks, cross-environment comparisons, and change detection.
+
+**Configuration**
+
+| Parameter | Description |
+|-----------|-------------|
+| `on` | `delta` followed by a supported function, e.g. `delta count_rows`. |
+| `ref` | Reference asset in the format `datasource_name.dataset_name`. |
+| `threshold` | The acceptable difference between the two values. |
+
+**Supported functions**
+
+| Function | Description |
+|----------|-------------|
+| `delta count_rows` | Compare row counts between source and reference. |
+
+**Example**
+
+```yaml
+validations for iris_pgsql_source.dcs_iris:
+  - row_count_delta:
+      on: delta count_rows
+      ref: iris_pgsql_target.dcs_iris
+      threshold: "< 1"
+```

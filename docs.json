@@ -80,8 +80,7 @@
                 "pages": [
                   "validation/overview",
                   "validation/details",
-                  "validation/configure",
-                  "validation/validation-types"
+                  "validation/configure"
                 ]
               },
               {
