@@ -23,8 +23,7 @@
                 "group": "Manage Your Team",
                 "pages": [
                   "workspace/workspaces",
-                  "workspace/users",
-                  "workspace/audit-logs"
+                  "workspace/users"
                 ]
               }
             ]
@@ -119,6 +118,7 @@
             "group": "Reference",
             "pages": [
               "reference/api-keys",
+              "reference/audit-logs",
               "reference/validation-types",
               "reference/thresholds",
               "reference/windows",
