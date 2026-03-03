@@ -106,7 +106,8 @@
                 "pages": [
                   "test-data/overview",
                   "test-data/structural",
-                  "test-data/fabricate"
+                  "test-data/fabricate",
+                  "reference/functions"
                 ]
               },
               {
@@ -127,7 +128,6 @@
               "reference/audit-logs",
               "reference/validation-types",
               "reference/thresholds",
-              "reference/functions",
               "reference/jobs",
               "reference/error-codes",
               "reference/masking"
