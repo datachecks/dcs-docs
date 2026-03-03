@@ -1,8 +1,49 @@
 ---
 title: Comparisons
-description: Verify that data in your source and target databases matches after migration.
+description: View, filter, and manage all dataset comparisons in your workspace.
 ---
 
-<Note>This page is coming soon.</Note>
+The Comparisons page lists every comparison run in your workspace. Navigate to **Comparisons** in the left sidebar to access it.
 
-A comparison checks whether the data in a source dataset matches a target dataset. Use comparisons to verify data integrity during and after migration.
+## Comparison types
+
+| Type | Description |
+|------|-------------|
+| **Deep** | Scans both datasets fully and identifies all differences. Generates a detailed diff report. |
+| **Shallow** | Stops after the first value difference found. Faster than Deep for quick checks. |
+| **Schema** | Compares structural elements only — column names, data types, and constraints. Ignores row data. |
+
+## Table columns
+
+| Column | Description |
+|--------|-------------|
+| **Run ID** | Unique identifier for the comparison execution. |
+| **Comparison Name** | Name assigned to the comparison, plus its type (Deep, Shallow, or Schema). |
+| **Source & Target Dataset** | The two datasets being compared. |
+| **Results** | Whether the datasets are Identical or Different. |
+| **Diff PKs** | Number of primary keys that differ between source and target. |
+| **Diff Rows** | Number of rows that differ between source and target. |
+| **Origin** | Where the comparison was triggered — Web UI or CLI. |
+| **Created At** | Timestamp of when the comparison was created. |
+
+## Filters
+
+| Filter | Options |
+|--------|---------|
+| **Results** | Identical, Different |
+| **Origin** | Web, CLI |
+| **Comparison Type** | Deep, Shallow, Schema |
+| **Source / Target Dataset** | Select a specific dataset pair |
+| **Diff PKs / Rows %** | Filter by percentage threshold |
+| **Search** | Search by name or Run ID |
+| **Date range** | Today, Yesterday, Last Week, Last Month, Last Quarter, or custom |
+
+## Actions
+
+- **View details** — Click any row to open the full comparison result with schema, primary key, and value diff tabs.
+- **Generate report** — Select one or more runs via checkbox, then click **Report** to export a breakdown of schema diffs, primary key exclusives, duplicates, value differences, and row counts.
+- **Delete** — Select a run and click **Delete Run** to permanently remove it.
+
+## Create a comparison
+
+Click **New Comparison** to set up a new run. See [Create a Comparison](/comparisons/create) for a step-by-step guide.

@@ -1,6 +1,71 @@
 ---
 title: Create a Comparison
-description: How to configure and run a data comparison between source and target datasets.
+description: Step-by-step guide to configuring and running a comparison between two datasets.
 ---
 
-<Note>This page is coming soon.</Note>
+Navigate to **Comparisons** in the left sidebar and click **New Comparison** to open the creation wizard.
+
+## Step 1 — Select comparison type
+
+| Type | When to use |
+|------|-------------|
+| **Deep** | When you need a complete diff — all differences identified and reported. |
+| **Shallow** | When you only need to know if differences exist, not where. Stops at the first mismatch. |
+| **Schema** | When you only need to compare structure (columns, types, constraints) without examining data. |
+
+## Step 2 — Name the comparison
+
+Enter a descriptive name to identify this comparison in the list.
+
+## Step 3 — Choose data sources
+
+Select the **source** and **target** data sources from your connected integrations.
+
+## Step 4 — Select comparison method
+
+| Method | Description |
+|--------|-------------|
+| **Table** | Compare data directly from a database table. Select a dataset and optionally apply a SQL filter clause (e.g. `product.price > 100`). |
+| **Query** | Compare datasets using custom SQL queries. Useful when the comparison scope doesn't map to a single table. |
+
+## Step 5 — Define primary keys
+
+Select the columns that uniquely identify each row in the source and target. Primary keys are used to align records accurately across both datasets.
+
+## Step 6 — Select columns
+
+Choose which columns to include in the comparison. Columns exclusive to one dataset cannot be selected. Enable **Case Sensitive** to treat uppercase and lowercase values as distinct.
+
+## Step 7 — Map columns (optional)
+
+If source and target columns have different names, define the mapping using **Add Column Mapping Pair**. Select the source column and its corresponding target column for each pair.
+
+## Step 8 — Attach rules (optional)
+
+Rules control how specific differences are handled — for example, ignoring whitespace differences or rounding numeric values before comparison. Click **+ Add Rule** to apply a pre-configured rule.
+
+## Step 9 — Configure semantic similarity (Shallow only)
+
+For Shallow comparisons, you can enable semantic similarity to detect near-matches in text columns:
+
+| Setting | Description |
+|---------|-------------|
+| **Model** | The text analysis model to use. |
+| **Pre-processing** | Functions applied before comparison — lowercasing, punctuation removal, etc. |
+| **Similarity function** | The algorithm used to score similarity (e.g. Levenshtein Distance). |
+| **Match threshold** | A score between 0 and 1. Values above this are treated as matches. |
+
+## Step 10 — Advanced configuration (optional)
+
+| Parameter | Description |
+|-----------|-------------|
+| **Bisection Threshold** | Minimum record count above which the dataset is split into smaller segments for processing. |
+| **Bisection Factor** | The division factor used when breaking down large datasets. |
+| **Max Threadpool Size** | Maximum number of parallel threads used during comparison. |
+| **Egress Limit** | Maximum number of differing rows before the comparison automatically stops. |
+| **Per Column Diff Limit** | Maximum number of differences detected per column. |
+| **Timeout Limit** | Maximum allowed duration in minutes for the comparison job. |
+
+## Step 11 — Submit
+
+Click **Submit** to create and start the comparison. You can monitor progress in [Jobs](/reference/jobs).

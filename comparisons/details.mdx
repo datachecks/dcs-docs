@@ -1,0 +1,83 @@
+---
+title: Comparison Details
+description: Inspect the full results of a comparison run across schema, primary keys, and column values.
+---
+
+Click any row in the Comparisons list to open the detail view. Results are organized across four tabs.
+
+## Overview tab
+
+The Overview tab shows a high-level summary of the comparison run.
+
+**Run metadata**
+
+| Field | Description |
+|-------|-------------|
+| **Run ID** | Unique identifier for this run. |
+| **Status** | Outcome of the comparison. |
+| **Diff PKs** | Number of differing primary keys. |
+| **Diff Rows** | Number of differing rows. |
+| **Duration** | How long the comparison took. |
+| **Origin** | Whether the run was triggered from the Web UI or CLI. |
+| **Created At** | Timestamp of the run. |
+| **Comparison Type** | Deep, Shallow, or Schema. |
+| **Semantic Similarity** | Whether semantic similarity detection was enabled. |
+
+**Summary metrics**
+
+| Metric | Description |
+|--------|-------------|
+| **Rows Comparison** | Source and target row counts side by side. |
+| **Schema Comparison** | Number of columns analyzed. |
+| **Primary Keys** | Count of exclusive keys in source and target. |
+| **Values Comparison** | Number of columns with differing values. |
+
+## Schema tab
+
+The Schema tab shows the structural alignment between the two datasets.
+
+| Column | Description |
+|--------|-------------|
+| **Source / Target Name** | Dataset and column names. |
+| **Type** | Data type of each column. |
+| **Schema Status** | Whether the column schema is identical or has differences. |
+| **Values Status** | Percentage of rows with value differences in that column. |
+| **Exclusive Values** | Count of values that exist in only one dataset. |
+
+**Filters:** Filter by schema status or values status, or search by column name.
+
+## Primary Keys tab
+
+The Primary Keys tab breaks down key-level differences:
+
+- **Duplicate PKs in Source** — Primary key values that appear more than once in the source.
+- **Duplicate PKs in Target** — Primary key values that appear more than once in the target.
+- **Rows exclusive to Source** — Records that exist only in the source dataset.
+- **Rows exclusive to Target** — Records that exist only in the target dataset.
+
+Download results as Excel using the download button.
+
+## Values tab
+
+The Values tab highlights column-level value differences between the two datasets.
+
+- Each row shows a column with the percentage and count of differing values.
+- Toggle **Semantic Similarity** to surface near-matches alongside exact differences.
+- The diff table uses color coding: **red** for significant differences, **yellow** for partial similarity, and no color for identical values.
+- Hover over a cell to see the similarity score.
+- Use **Columns toggle** to show only changed columns and their primary keys.
+
+Download results as Excel using the download button.
+
+## Actions
+
+Click the **⋯** menu in the top right to:
+
+| Action | Description |
+|--------|-------------|
+| **Info** | View the comparison configuration and column mappings. |
+| **Stats** | View performance metrics — query timings, min/max/average, P90 for source and target. |
+| **Report** | Download a detailed comparison report. |
+| **Rerun** | Execute the same comparison again. |
+| **Clone** | Duplicate the comparison configuration to create a similar run. |
+| **Delete** | Permanently remove the comparison. |

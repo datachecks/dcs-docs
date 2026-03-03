@@ -1,8 +1,28 @@
 ---
-title: Structural Comparisons
-description: Compare the schema structure of source and target datasets.
+title: Schema Comparison
+description: Compare the structure of two datasets — column names, data types, and constraints — without examining row data.
 ---
 
-<Note>This page is coming soon.</Note>
+A Schema Comparison checks whether the structure of a source dataset matches its target. It inspects column names, data types, nullability, and constraints without reading any row-level data.
 
-A structural comparison checks column names, data types, nullability, and primary keys between a source and target dataset without examining data values.
+Use a Schema Comparison when you want to verify that a migration preserved the table structure before running a full data comparison.
+
+## What it checks
+
+| Element | Description |
+|---------|-------------|
+| **Column names** | Columns present in source but missing in target (and vice versa). |
+| **Data types** | Whether each column has the same data type in both datasets. |
+| **Constraints** | Nullability and primary key definitions. |
+
+## How to run one
+
+When [creating a comparison](/comparisons/create), select **Schema** as the comparison type in Step 1. You still select source and target data sources, but column selection and primary key configuration are not required.
+
+## Reading the results
+
+In the [comparison detail view](/comparisons/details), the **Schema tab** shows each column's alignment status:
+
+- **Identical** — Column exists in both datasets with matching type and constraints.
+- **Different** — Column exists in both datasets but has a type or constraint mismatch.
+- **Exclusive** — Column exists in only one of the two datasets.
