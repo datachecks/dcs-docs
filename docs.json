@@ -90,8 +90,7 @@
                 "pages": [
                   "comparisons/overview",
                   "comparisons/details",
-                  "comparisons/create",
-                  "comparisons/structural"
+                  "comparisons/create"
                 ]
               },
               {
