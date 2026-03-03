@@ -110,7 +110,10 @@
               {
                 "group": "Alerts",
                 "pages": [
-                  "alerts/overview"
+                  "alerts/overview",
+                  "alerts/details",
+                  "alerts/statuses",
+                  "alerts/lifecycle"
                 ]
               }
             ]

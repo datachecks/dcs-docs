@@ -1,8 +1,37 @@
 ---
 title: Alerts
-description: Get notified when validations detect threshold violations.
+description: Monitor and manage alerts triggered by validation threshold violations.
 ---
 
-<Note>This page is coming soon.</Note>
+Alerts are created automatically when a validation detects a threshold violation. Navigate to **Alerts** in the left sidebar to view and manage all alerts across your workspace.
 
-Alerts are triggered when a validation detects a threshold violation. You can route alerts to notification channels such as email, Slack, or Microsoft Teams.
+## Alert groups
+
+Alerts are organized into groups — each validation maps to a specific alert group. A group displays up to 50 alerts by default. When a validation generates 50 or more alerts, the same group name repeats with new alert instances so no alerts are lost.
+
+## List columns
+
+| Column | Description |
+|--------|-------------|
+| **ID** | Unique identifier for the alert. |
+| **Group** | Groups related alerts and shows the current status. |
+| **Alerts** | Total number of alerts within the group (up to 50 per group). |
+| **First Seen** | Timestamp when the alert was first triggered. |
+| **Last Seen** | Timestamp of the most recent alert detection. |
+
+## Filters
+
+| Filter | Description |
+|--------|-------------|
+| **Issue Status** | Filter by the type of issue the alert represents. |
+| **Datasources** | Filter alerts by the connected data source. |
+| **Alert Status** | Filter by current status — No Status, Fixed, Investigating, Expected, No Action Needed, or False Positive. |
+| **Date Range** | Show alerts within a predefined or custom time range. |
+
+A historical chart above the list shows total alert counts for the selected date range.
+
+## Next steps
+
+- [View Alert Details](/alerts/details) — Inspect the metrics graph and anomaly log for an individual alert
+- [Alert Statuses](/alerts/statuses) — Understand what each status means
+- [Alert Lifecycle](/alerts/lifecycle) — Learn how alerts move from creation to resolution

@@ -1,0 +1,23 @@
+---
+title: Alert Statuses
+description: Reference for all six alert statuses in Datachecks and what each one means.
+---
+
+Every alert has a status that reflects its current state in the investigation and resolution workflow. Keeping statuses up to date helps your team prioritize urgent issues and avoid duplicate work.
+
+## Statuses
+
+| Status | Description |
+|--------|-------------|
+| **No Status** | The initial state when an alert is first created. No action has been taken yet. |
+| **Investigating** | A team member is actively examining whether the alert represents a genuine issue. |
+| **Fixed** | The underlying problem has been resolved. No further action is needed. |
+| **Expected** | The anomaly is statistically valid but was caused by an anticipated event — such as a pipeline change, scheduled maintenance, or a known data event. |
+| **No Action Needed** | The anomaly is statistically valid but not significant enough to warrant investigation or remediation. |
+| **False Positive** | The alert does not reflect an actual statistical anomaly or genuine problem and can be dismissed. |
+
+## How to update a status
+
+Open the [alert detail view](/alerts/details) and use the status panel on the right side of the page to mark the alert as an incident or apply a resolution status.
+
+All status changes are recorded in the activity log so your team has a full audit trail.

@@ -1,0 +1,50 @@
+---
+title: Alert Details
+description: Inspect the full context of an alert — metrics, anomaly log, and status management.
+---
+
+Click any alert in the list to open its detail view. This page shows the full context of the alert: the validation that triggered it, a chart of the metric over time, and a log of every anomaly detected.
+
+## Summary
+
+The top of the page shows key metadata about the validation that triggered the alert:
+
+| Field | Description |
+|-------|-------------|
+| **Validation Type** | The category of the check (e.g. Completeness, Uniqueness). |
+| **Schedule** | How frequently the validation runs. |
+| **Threshold** | The limit that was crossed to trigger the alert. |
+| **Sensitivity** | The deviation tolerance before an alert activates. |
+| **First Seen** | Timestamp when the alert first triggered. |
+| **Last Seen** | Timestamp of the most recent detection. |
+
+## Metrics chart
+
+The chart plots the validation's measured values over the selected time window. It shows:
+
+- **Values** — The metric recorded at each run
+- **Upper / lower bounds** — Expected range based on the threshold configuration
+- **Severity** — How far each value deviated from the expected range
+- **Threshold line** — A dotted reference line indicating the alert boundary
+
+Hover over any data point to see the details for that specific run.
+
+## Anomaly log
+
+The log table records every anomaly detected for this alert:
+
+| Column | Description |
+|--------|-------------|
+| **Value** | The metric value recorded at the time of detection. |
+| **Deviation** | How far the value deviated from the expected range. |
+| **Seen At** | Timestamp when the anomaly was detected. |
+
+## Managing alert status
+
+The right-side panel lets you update the alert status and track activity:
+
+- **Mark as Incident** — Flag the alert as an active incident under investigation.
+- **Resolve** — Close the alert with one of three resolution types: False Positive, Expected, or No Action Needed.
+- **Activity log** — A chronological record of every status change and user comment on the alert.
+
+See [Alert Statuses](/alerts/statuses) for a description of each status, and [Alert Lifecycle](/alerts/lifecycle) for how alerts progress from creation to resolution.

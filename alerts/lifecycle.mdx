@@ -1,0 +1,48 @@
+---
+title: Alert Lifecycle
+description: How alerts move from creation through investigation to resolution in Datachecks.
+---
+
+Every alert in Datachecks follows a defined lifecycle — from the moment a validation crosses a threshold to the point where the issue is resolved or dismissed.
+
+## Lifecycle stages
+
+### 1. Created
+
+When a validation detects a threshold violation, an alert is created automatically with a status of **No Status**. It is flagged as a potential issue awaiting investigation.
+
+### 2. Investigating
+
+A team member opens the alert and begins examining it. The status is updated to **Investigating** to signal that someone is actively looking at the issue and prevent duplicate effort.
+
+### 3. Mark as Incident
+
+If the alert is confirmed as a real problem, it can be escalated by marking it as an **Incident**. This signals that the issue is under active investigation and may require remediation. An alert can be marked as an incident directly from the **No Status** state — the Investigating step is optional.
+
+### 4. Resolve
+
+Once an alert has been assessed, it is closed with one of three resolution statuses:
+
+| Resolution | When to use |
+|------------|-------------|
+| **False Positive** | The detection was not a valid anomaly and does not indicate a real problem. |
+| **Expected** | The anomaly was valid but caused by a known event — a pipeline change, maintenance window, or deliberate data modification. |
+| **No Action Needed** | The anomaly was valid but not significant enough to require any further action. |
+
+## State diagram
+
+```
+Created (No Status)
+       │
+       ├──────────────────────────────────┐
+       ▼                                  │
+  Investigating                           │
+       │                                  │
+       ▼                                  ▼
+  Mark as Incident ──────────────▶  Resolve
+                                  ├─ False Positive
+                                  ├─ Expected
+                                  └─ No Action Needed
+```
+
+All transitions are recorded in the [alert activity log](/alerts/details#managing-alert-status), giving you a full audit trail of how each alert was handled.
