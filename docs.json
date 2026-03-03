@@ -96,8 +96,8 @@
               {
                 "group": "Dashboards",
                 "pages": [
-                  "dashboards/migration",
-                  "dashboards/observability",
+                  "dashboards/comparisons",
+                  "dashboards/validations",
                   "dashboards/alerts"
                 ]
               },

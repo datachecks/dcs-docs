@@ -1,6 +1,53 @@
 ---
 title: Alerts Dashboard
-description: View and manage all alerts triggered across your workspace.
+description: Monitor incidents, alert volume, and resolution rates across your workspace.
 ---
 
-<Note>This page is coming soon.</Note>
+The Alerts Dashboard tracks validation incidents — when they occur, how many are active, and how quickly they're being resolved. Navigate to **Dashboards → Alerts** in the left sidebar.
+
+Use the **date range picker** to set the time window (default: last 20 days). A header line shows the total alert count for the selected range.
+
+## Summary metrics
+
+Four KPI cards sit at the top of the dashboard:
+
+| Metric | Description |
+|--------|-------------|
+| **Incident Issued** | Total number of incidents created in the selected period. |
+| **Incident Resolved** | Total number of incidents marked as resolved. |
+| **Alerts** | Current alert count with percentage change vs the previous period. |
+| **Status Update Rate** | Percentage of alerts that have had their status updated. |
+
+## Charts
+
+**Incident Issued (timeseries)** — Bar chart showing the number of incidents created per day over the selected period. Hover to see the exact count for each date.
+
+**Alerts trend** — Area chart with a trend line showing alert volume over time, including the current count and percentage change.
+
+**Alerts from Custom SQL** — Bar chart showing alerts triggered specifically by Custom SQL validations.
+
+**Status Update Rate** — Percentage metric showing how actively alert statuses are being managed.
+
+## Filters
+
+| Filter | Description |
+|--------|-------------|
+| **Alert Status** | Filter by status — Active, Resolved, or Suppressed |
+| **Category** | Filter by validation category (Completeness, Uniqueness, etc.) |
+| **Datasources** | Filter to one or more connected data sources |
+| **Date Range** | Set the time window for all metrics |
+
+## Alert groups table
+
+Below the charts, alerts are grouped by alert group. Each row shows:
+
+| Column | Description |
+|--------|-------------|
+| **ID** | Unique alert group identifier. |
+| **Group** | Alert group name with status chip and datasource → dataset → column breadcrumb. |
+| **Alerts Count** | Number of individual alerts in the group. |
+| **First Seen** | When the first alert in the group was triggered. |
+| **Last Seen** | When the most recent alert in the group was triggered. |
+| **Status** | Current status — Active, Resolved, or Suppressed. |
+
+Click any row to view the full alert group detail.

@@ -1,0 +1,58 @@
+---
+title: Comparisons Dashboard
+description: Monitor comparison job performance, results distribution, and dataset diff metrics over time.
+---
+
+The Comparisons Dashboard gives you an at-a-glance view of how your comparison runs are performing. Navigate to **Dashboards → Comparisons** in the left sidebar.
+
+Use the **date range picker** in the top-right to set the time window (default: last 30 days). All metrics and charts update to reflect the selected range.
+
+## Summary cards
+
+Two metric cards sit at the top of the dashboard, each showing the current value and a trend indicator compared to the previous period.
+
+**Job Status**
+
+| Metric | Description |
+|--------|-------------|
+| **Successful Jobs** | Count of comparison runs that completed without error. |
+| **Failed Jobs** | Count of comparison runs that errored out. |
+| **Avg Run Time** | Average duration of a comparison run, in seconds. |
+| **Total Jobs** | Total comparison executions in the selected period. |
+
+**Performance Statistics**
+
+| Metric | Description |
+|--------|-------------|
+| **Avg Diff PK (%)** | Average percentage of differing primary keys across all runs. |
+| **Avg Diff Rows (%)** | Average percentage of differing rows across all runs. |
+| **Total Rows Downloaded** | Total number of rows read during comparisons. |
+
+## Charts
+
+**Comparison Types** — Pie chart breaking down runs by type: Deep, Shallow, and Schema. The total count is shown in the center.
+
+**Comparison Results** — Horizontal bar chart showing how runs resolved:
+
+| Result | Description |
+|--------|-------------|
+| **Identical** | Source and target matched completely. |
+| **Schema Diff** | Structural differences detected. |
+| **Row Count Diff** | Row counts differed between source and target. |
+| **Value Diff** | Column value differences found. |
+
+## Filters
+
+Use the filter panel to narrow down which runs are included in the metrics and charts:
+
+| Filter | Description |
+|--------|-------------|
+| **Results** | Identical, Different |
+| **Origin** | Manual (Web UI), Agent |
+| **Comparison Type** | Deep, Shallow, Schema |
+| **Source Datasource** | Filter to a specific source connection |
+| **Target Datasource** | Filter to a specific target connection |
+| **Source Dataset** | One or more source datasets |
+| **Target Dataset** | One or more target datasets |
+| **Diff PKs range** | Min/max slider for primary key diff percentage |
+| **Diff Rows range** | Min/max slider for row diff percentage |

@@ -1,0 +1,46 @@
+---
+title: Validations Dashboard
+description: Track schema coverage, validation health, and execution trends across your datasets.
+---
+
+The Validations Dashboard shows how well your datasets are covered by validations and how healthy those validations are over time. Navigate to **Dashboards → Validations** in the left sidebar.
+
+Use the **date range picker** to adjust the time window (default: last 30 days). Trend charts use a 90-day baseline for context.
+
+## Summary metrics
+
+Two percentage cards appear at the top of the dashboard:
+
+| Metric | Description |
+|--------|-------------|
+| **Schema Coverage** | Percentage of datasets that have at least one validation executed in the last 90 days. |
+| **Health** | Percentage of validations that passed compared to the total number executed in the last 90 days. |
+
+## Charts
+
+**Schema Coverage** — Line chart plotting coverage percentage over time. Rising coverage means more of your datasets are actively being validated.
+
+**Health** — Line chart plotting the pass rate of validations over time. A drop in health indicates validations are failing or alerting more frequently.
+
+**Validation Execution** — A combined chart showing:
+- A trend line for total validations executed over the selected period
+- A stacked bar chart breaking down executions by validation type
+
+You can toggle individual validation types on and off using the filter panel:
+
+| Validation Type | Color |
+|----------------|-------|
+| Completeness | Purple |
+| Custom SQL | Red |
+| Numeric Distribution | Cyan |
+| Reliability | Blue |
+| Uniqueness | Orange |
+| Validity | Green |
+
+## Filters
+
+| Filter | Description |
+|--------|-------------|
+| **Datasource** | Narrow all charts to a single connected data source |
+| **Validation Type** | Toggle individual types on/off in the Execution chart |
+| **Date Range** | Set the time window for all metrics |
