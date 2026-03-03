@@ -104,7 +104,9 @@
               {
                 "group": "Test Data",
                 "pages": [
-                  "test-data/overview"
+                  "test-data/overview",
+                  "test-data/structural",
+                  "test-data/fabricate"
                 ]
               },
               {

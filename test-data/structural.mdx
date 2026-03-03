@@ -1,0 +1,101 @@
+---
+title: Structural
+description: Generate synthetic test data that replicates the structure and data patterns of an existing datasource.
+---
+
+Structural test data generation creates a synthetic copy of an existing datasource. Datachecks analyzes the source schema and sensitivity profile, then generates data that matches its patterns — without using real values.
+
+Use Structural when you want test data that mirrors production without exposing sensitive information.
+
+## Create a test database
+
+1. Navigate to **Test Data → Structural** in the left sidebar.
+2. Click **New Database**.
+3. Fill in the form:
+   - **Database Name** — A name for the synthetic database.
+   - **Select Datasource** — The source connection to replicate from.
+   - **Select Datasets** — Choose which tables to include. Use **Select All** or search to filter.
+4. Click **Submit**.
+
+## Database View
+
+The Database View is where you configure which generators to use for each column.
+
+**Left sidebar** lists all tables from the selected datasource. Each table shows the column count. Filter by sensitivity using the **At Risk**, **Protected**, and **Not Sensitive** buttons.
+
+**Column table** shows the columns for the selected table:
+
+| Column | Description |
+|--------|-------------|
+| **Column Name** | Name of the column, with source dataset shown for copied columns. |
+| **Status** | Sensitivity classification — At Risk, Protected, or Not Sensitive. |
+| **Generator** | The generator assigned to this column. |
+| **Unique** | Whether generated values are enforced as unique. |
+| **Actions** | Edit or delete the column configuration. |
+
+### Configure a column
+
+Click the edit icon on any column to open the column editor:
+
+| Field | Description |
+|-------|-------------|
+| **Column Name** | Name of the column. |
+| **Generator** | The data generator to use. Search by name or filter by category. Each generator shows a description and example output. |
+| **Hide Column** | If enabled, this column is excluded from the generated output. |
+| **Null Percentage** | Percentage of rows that will contain a null value (0–100). |
+| **Format** | Optional format pattern for the generated value. |
+| **Mask** | Optional mask pattern applied to the value. |
+
+### Generator types
+
+| Generator | Description |
+|-----------|-------------|
+| **Standard generators** | Email, phone, name, address, and more. See [Test Data Generators](/reference/functions) for the full list. |
+| **value_of_column** | Copies values from a specific column in the source datasource. Select the dataset and column. |
+| **custom_function** | An AI-generated function based on the column name. |
+| **similar_values** | Generates values similar to a list of examples you provide. |
+| **category_value** | Generates values from a selected category. |
+| **value_of_virtual_table** | Draws values from a pre-built virtual table. |
+
+### Row count
+
+Click the edit icon next to the row count in the column table header to set how many rows to generate for each table.
+
+### Add a column
+
+Click **Add Column** to add a new column to a table beyond what was imported from the source.
+
+## Privacy Hub
+
+The Privacy Hub gives you a sensitivity analysis of all tables and columns imported from the source datasource. Use it to identify which columns contain sensitive data before configuring generators.
+
+## Table View
+
+The Table View previews the generated data before you export it. Select a table from the left sidebar to see a sample of the generated rows.
+
+From here you can:
+
+- **Download Data** — Save the generated dataset as a file.
+- **Export YAML** — Export the generator configuration for reuse or version control.
+- **Regenerate Data** — Trigger a new generation run with the current configuration.
+
+## Foreign Keys
+
+Define relationships between tables to ensure generated data maintains referential integrity.
+
+Click **New FK** to create a relationship:
+- **Foreign Key** — Select the table and column that holds the foreign key.
+- **Primary Key** — Select the table and column it references.
+
+## Data Targets
+
+Data Targets define where the generated data is delivered — for example, an API endpoint or webhook.
+
+| Field | Description |
+|-------|-------------|
+| **Name** | A label for this target. |
+| **Request Type** | HTTP method — GET, POST, PUT, or DELETE. |
+| **Link** | The endpoint URL. |
+| **Headers** | Key-value pairs added to the request. |
+| **Request Body** | JSON payload sent with the request. |
+| **Target Type** | The type of destination. |

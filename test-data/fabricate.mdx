@@ -1,0 +1,93 @@
+---
+title: Fabricate
+description: Build synthetic datasets from scratch by defining tables and columns with data generators.
+---
+
+Fabricate lets you create a test database from a blank canvas. You define each table and column yourself, and assign a data generator to populate each field. There is no source datasource required.
+
+Use Fabricate when you need a custom dataset that doesn't map to an existing production schema.
+
+## Create a test database
+
+1. Navigate to **Test Data → Fabricate** in the left sidebar.
+2. Click **New Database**.
+3. Enter a **Database Name**.
+4. Click **Submit**.
+
+## Database View
+
+The Database View is where you build your tables and configure column generators.
+
+### Add a table
+
+Click **New Table** in the top navigation bar. Choose how to create the table:
+
+| Option | Description |
+|--------|-------------|
+| **Table** | Import columns from an existing datasource table. Select a datasource, then a dataset, then choose which columns to include. |
+| **View** | Import columns from a datasource view. Select a datasource, then a view, then choose columns. |
+| **Virtual Table** | Add a pre-built virtual table. All columns are included automatically. |
+
+### Configure a column
+
+Click the edit icon on any column to open the column editor:
+
+| Field | Description |
+|-------|-------------|
+| **Column Name** | Name of the column. |
+| **Generator** | The data generator to use. Search by name or browse by category. Each generator shows a description and example output. |
+| **Hide Column** | If enabled, this column is excluded from the generated output. |
+| **Unique** | Enforce uniqueness across all generated values for this column. |
+| **Null Percentage** | Percentage of rows that will contain a null value (0–100). |
+| **Format** | Optional format pattern for the generated value. |
+| **Mask** | Optional mask pattern applied to the value. |
+
+### Generator types
+
+| Generator | Description |
+|-----------|-------------|
+| **Standard generators** | Email, phone, name, address, and more. See [Test Data Generators](/reference/functions) for the full list. |
+| **value_of_column** | Copies values from a specific column in a connected datasource. Select the dataset and column. |
+| **custom_function** | An AI-generated function based on the column name. |
+| **similar_values** | Generates values similar to a list of examples you provide. |
+| **category_value** | Generates values from a selected category. |
+| **value_of_virtual_table** | Draws values from a pre-built virtual table. |
+
+### Add a column
+
+Click **Add Column** within any table to add a new column and assign a generator to it.
+
+### Row count
+
+Click the edit icon next to the row count in the column table header to set how many rows to generate for each table.
+
+## Table View
+
+The Table View previews the generated data. Select a table from the left sidebar to see a sample of the generated rows.
+
+From here you can:
+
+- **Download Data** — Save the generated dataset as a file.
+- **Export YAML** — Export the generator configuration for reuse or version control.
+- **Regenerate Data** — Trigger a new generation run with the current configuration.
+
+## Foreign Keys
+
+Define relationships between tables to maintain referential integrity in the generated data.
+
+Click **New FK** to create a relationship:
+- **Foreign Key** — Select the table and column that holds the foreign key.
+- **Primary Key** — Select the table and column it references.
+
+## Data Targets
+
+Data Targets define where the generated data is delivered — for example, an API endpoint or webhook.
+
+| Field | Description |
+|-------|-------------|
+| **Name** | A label for this target. |
+| **Request Type** | HTTP method — GET, POST, PUT, or DELETE. |
+| **Link** | The endpoint URL. |
+| **Headers** | Key-value pairs added to the request. |
+| **Request Body** | JSON payload sent with the request. |
+| **Target Type** | The type of destination. |

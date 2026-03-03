@@ -1,6 +1,15 @@
 ---
 title: Test Data
-description: Generate and manage synthetic test data for your migration testing.
+description: Generate synthetic test data that mirrors your production data patterns or build datasets from scratch.
 ---
 
-<Note>This page is coming soon.</Note>
+Test data generation lets you create realistic synthetic datasets for migration testing without exposing real production data. Datachecks supports two approaches:
+
+| Type | When to use |
+|------|-------------|
+| [**Structural**](/test-data/structural) | You want to replicate the data patterns, structure, and sensitivity profile of an existing datasource. Datachecks analyzes your source and generates data that matches its shape. |
+| [**Fabricate**](/test-data/fabricate) | You want to build a dataset from scratch. You define the tables and columns yourself, and use data generators to populate each field. |
+
+Both types share the same configuration interface — Database View, Table View, Foreign Keys, and Data Targets — and support the full library of [Test Data Generators](/reference/functions).
+
+Navigate to **Test Data** in the left sidebar and choose **Structural** or **Fabricate** to get started.
