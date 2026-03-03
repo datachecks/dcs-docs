@@ -82,7 +82,8 @@
                   "validation/overview",
                   "validation/details",
                   "validation/configure",
-                  "reference/windows"
+                  "reference/windows",
+                  "reference/validation-types"
                 ]
               },
               {
@@ -126,7 +127,6 @@
             "pages": [
               "reference/api-keys",
               "reference/audit-logs",
-              "reference/validation-types",
               "reference/thresholds",
               "reference/jobs",
               "reference/error-codes",
